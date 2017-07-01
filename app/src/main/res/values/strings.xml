@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">矩阵运算</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="matrix_define_one">在数学中，矩阵（Matrix）是一个按照长方阵列排列的复数或实数集合，最早来自于方程组的系数及常数所构成的方阵。这一概念由19世纪英国数学家凯利首先提出。</string>
+    <string name="matrix_define_four">元素是实数的矩阵称为实矩阵，元素是复数的矩阵称为复矩阵。而行数与列数都等于n的矩阵称为n阶矩阵或n阶方阵。</string>
+    <string name="matrix_define_five">矩阵是高等代数学中的常见工具，也常见于统计分析等应用数学学科中。 在物理学中，矩阵于电路学、力学、光学和量子物理中都有应用；计算机科学中，三维动画制作也需要用到矩阵。 矩阵的运算是数值分析领域的重要问题。将矩阵分解为简单矩阵的组合可以在理论和实际应用上简化矩阵的运算。对一些应用广泛而形式特殊的矩阵，例如稀疏矩阵和准对角矩阵，有特定的快速运算算法。关于矩阵相关理论的发展和应用，请参考矩阵理论。在天体物理、量子力学等领域，也会出现无穷维的矩阵，是矩阵的一种推广。</string>
+    <string name="matrix_operation_des">矩阵运算在科学计算中非常重要，而矩阵的基本运算包括矩阵的加法，减法，数乘，转置，共轭和共轭转置。  </string>
+    <string name="matrix_operation_add1">矩阵的加法满足下列运算律(A，B，C都是同型矩阵)：\n A+B=B+A \n (A+B)+C=A+(B+C)\n应该注意的是只有同型矩阵之间才可以进行加法。</string>
+    <string name="matrix_mul">矩阵的数乘满足以下运算律：</string>
+    <string name="matrix_mul2">矩阵的加减法和矩阵的数乘合称矩阵的线性运算。</string>
+    <string name="matrix_transpose">把矩阵A的行和列互相交换所产生的矩阵称为A的转置矩阵，这一过程称为矩阵的转置。</string>
+    <string name="matrix_transpose1">矩阵的转置满足以下运算律：</string>
+    <string name="matrix_conjugate">矩阵的共轭定义为: </string>
+    <string name="matrix_conjugate2">一个2×2复数矩阵的共轭如下所示： </string>
+    <string name="matrix_conjugate_trans1">矩阵的共轭转置定义为： </string>
+    <string name="matrix_conjugate_trans2">也可以写为：</string>
+    <string name="matrix_conjugate_trans3">一个2×2复数矩阵的共轭如下所示：</string>
+    <string name="matrix_conjugate_trans4">则 </string>
+
+    <!--det-->
+    <string name="matrix_det_des1">行列式在数学中，是一个函数，其定义域为det的矩阵A，取值为一个标量，写作det(A)或 | A | 。无论是在线性代数、多项式理论，还是在微积分学中（比如说换元积分法中），行列式作为基本的数学工具，都有着重要的应用。\n行列式可以看做是有向面积或体积的概念在一般的欧几里得空间中的推广。或者说，在 n 维欧几里得空间中，行列式描述的是一个线性变换对“体积”所造成的影响。</string>
+    <string name="matrix_det_define1">行列式在数学中，是由解线性方程组产生的一种算式，是取自不同行不同列的n个元素的乘积的代数和。</string>
+    <string name="matrix_det_define2">为排列j1j2...jn的逆序数。</string>
+    <string name="matrix_det_nature1">行列式A中某行(或列)用同一数k乘,其结果等于kA。</string>
+    <string name="matrix_det_nature2">行列式A等于其转置行列式AT(AT的第i行为A的第i列)。</string>
+    <string name="matrix_det_nature3">若n阶行列式|αij|中某行(或列);行列式则|αij|是两个行列式的和，这两个行列式的第i行(或列),一个是b1,b2,…,bn；另一个是с1，с2,…,сn；其余各行（或列）上的元与|αij|的完全一样。</string>
+    <string name="matrix_det_nature4">行列式A中两行（或列）互换,其结果等于-A。 ⑤把行列式A的某行（或列）中各元同乘一数后加到另一行（或列）中各对应元上，结果仍然是A。</string>
+    
+    <string name="matrix_rank_define1">在线性代数中，一个矩阵A的列秩是A的线性独立的纵列的极大数目。类似地，行秩是A的线性独立的横行的极大数目。矩阵的列秩和行秩总是相等的，因此它们可以简单地称作矩阵A的秩。通常表示为r(A)，rk(A)或rank A。</string>
+    <string name="matrix_rank_define2">引理 设矩阵A=(aij)sxn的列秩等于A的列数n，则A的列秩，秩都等于n。</string>
+    <string name="matrix_rank_define3">定理 矩阵的行秩，列秩，秩都相等。</string>
+    <string name="matrix_rank_define4">定理 初等变换不改变矩阵的秩。</string>
+    <string name="matrix_rank_define5">定理 矩阵的乘积的秩Rab小于等于min{Ra,Rb};</string>
+
+</resources>

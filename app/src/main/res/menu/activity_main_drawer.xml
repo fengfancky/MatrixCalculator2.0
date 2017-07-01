@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/add_sub"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="加、减" />
+        <item
+            android:id="@+id/num_mul"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="数乘" />
+        <item
+            android:id="@+id/multiplication"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="乘法" />
+        <item
+            android:id="@+id/conjugate"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="共轭" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="行列式" />
+        <item
+            android:id="@+id/nav_manage"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="特征值与特征向量" />
+        <item
+            android:id="@+id/nav_rank"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="矩阵的秩" />
+    </group>
+
+    <item android:title="更多">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="分享" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="关于" />
+        </menu>
+    </item>
+
+</menu>
