@@ -4,31 +4,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/add_sub"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_menu_add"
             android:title="加、减" />
         <item
             android:id="@+id/num_mul"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_menu_mul_num"
             android:title="数乘" />
         <item
             android:id="@+id/multiplication"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="乘法" />
+            android:icon="@drawable/ic_menu_mul"
+            android:title="乘法"
+            />
         <item
             android:id="@+id/conjugate"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_e"
             android:title="共轭" />
         <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:id="@+id/nav_det"
+            android:icon="@drawable/ic_menu_det"
             android:title="行列式" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_vector"
             android:title="特征值与特征向量" />
         <item
             android:id="@+id/nav_rank"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_rank"
             android:title="矩阵的秩" />
     </group>
 
