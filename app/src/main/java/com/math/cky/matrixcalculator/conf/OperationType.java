@@ -14,4 +14,5 @@ public class OperationType {
     public static final String CONJUGATE="共轭";
     public static final String EIGEN_VALUES="特征值";
     public static final String RANK="秩";
+    public static final String INVERSE="逆";
 }

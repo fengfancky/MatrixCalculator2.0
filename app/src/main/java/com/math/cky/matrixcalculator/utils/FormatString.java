@@ -3,6 +3,8 @@ package com.math.cky.matrixcalculator.utils;
 import android.util.Log;
 
 
+import java.text.DecimalFormat;
+
 import Jama.Matrix;
 
 /**
@@ -190,17 +192,82 @@ public class FormatString {
     }
 
     /**
-     * 特征值
+     * 特征值与特征向量
      */
-    public static String values(String string1,int rowNum1){
-        String result="";
+    public static String[] values(String string1,int rowNum1){
+        DecimalFormat df = new java.text.DecimalFormat("###.###");
+        String[] result=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix_det1=new Matrix(double1);
-        Matrix matrix=matrix_det1.eig().getD();
-        double[][] doubles=matrix.getArray();
-        for (int g=0;g<doubles.length;g++){
-            if (doubles[g][g]>0)
-                result+=doubles[g][g]+"  ";
+        Matrix matrixD=matrix_det1.eig().getD();
+        Matrix matrixV=matrix_det1.eig().getV();
+        double[] matrixImg=matrix_det1.eig().getImagEigenvalues();
+        double[] matrixReal=matrix_det1.eig().getRealEigenvalues();
+
+        //特征值
+        StringBuffer eigenvalues=new StringBuffer("特征值：\n");
+
+        for (int i=0;i<matrixReal.length;i++){
+            String realStr=df.format(matrixReal[i]);
+            String imgStr="";
+            if (matrixImg[i]==0.0){
+                 imgStr="";
+            }else if (matrixImg[i]>0){
+                 imgStr="+"+df.format(matrixImg[i])+"i";
+            }else {
+                 imgStr=df.format(matrixImg[i])+"i";
+            }
+            eigenvalues.append(realStr+imgStr);
+            if (i==matrixReal.length-1){
+                eigenvalues.append("\n");
+            }else {
+                eigenvalues.append(",  ");
+            }
+        }
+        result[0]=eigenvalues.toString();
+
+        //特征向量
+        StringBuffer eigenvector=new StringBuffer("特征向量：\n");
+
+        Log.i(TAG, "valuesV: \n"+printMatrix(getStringMatrix(matrixV)));
+        Log.i(TAG, "valuesD: \n"+printMatrix(getStringMatrix(matrixD)));
+//        Log.i(TAG, "valuesImg: \n"+getStringByDouble(matrixImg));
+//        Log.i(TAG, "valuesReal: \n"+getStringByDouble(matrixReal));
+
+        double[][] matrixStr=matrixV.getArray();
+        for (int j=0;j<matrixStr.length;j++){
+            StringBuffer vector=new StringBuffer("向量"+(j+1)+":\n ");
+            for (int k=0;k<matrixStr.length;k++){
+                if (k==matrixStr.length-1){
+                    vector.append(df.format(matrixStr[k][j])+"  ");
+                }else {
+                    vector.append(df.format(matrixStr[k][j])+",  ");
+                }
+            }
+            eigenvector.append(vector);
+            eigenvector.append("\n");
+        }
+        result[1]=eigenvector.toString();
+        return result;
+    }
+
+    /**
+     * 求矩阵的秩
+     */
+    public static int rank(String string1,int rowNum1){
+        double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
+        Matrix matrix=new Matrix(double1);
+        return matrix.rank();
+    }
+
+    public static String inverse(String string1,int rowNum1){
+        String result="";
+        double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
+        Matrix matrix=new Matrix(double1);
+        if (matrix.det()==0){
+            result="矩阵不可逆，为奇异矩阵。";
+        }else {
+            result=printMatrix(getStringMatrix(matrix.inverse()));
         }
         return result;
     }
@@ -248,5 +315,12 @@ public class FormatString {
         return printMatrix(getStringMatrix(matrix)).trim();
     }
 
+    public static String getStringByDouble(double[] double1){
+        String str="";
+        for (int i = 0; i < double1.length; i++) {
+            str=str+double1[i]+",  ";
+        }
+        return str;
+    }
 
 }

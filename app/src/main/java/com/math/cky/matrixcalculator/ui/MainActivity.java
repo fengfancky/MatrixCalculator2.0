@@ -160,6 +160,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.RANK);
             startActivity(intent);
+        }else if(id==R.id.nav_inverse){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.INVERSE);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

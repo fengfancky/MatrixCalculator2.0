@@ -89,6 +89,8 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             fab.setImageResource(R.mipmap.ic_menu_vector_press);
         }else if (title.equals(OperationType.RANK)){
             fab.setImageResource(R.mipmap.ic_menu_rank_press);
+        }else if (title.equals(OperationType.INVERSE)){
+            fab.setImageResource(R.mipmap.icon_inverse_press);
         }
     }
 
@@ -146,9 +148,24 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                 }else if(title.equals(OperationType.DEL)){
                     lastMatrix.setText(FormatString.det(matrix,oneRowNum));
                 }else if(title.equals(OperationType.EIGEN_VALUES)){
-                    lastMatrix.setText(FormatString.values(matrix,oneRowNum));
-                }else if(title.equals(OperationType.RANK)){
 
+                    if (oneRowNum==oneColNum){
+                        String[] result=FormatString.values(matrix,oneRowNum);
+                        lastMatrix.setText(result[0]+"\n"+result[1]);
+                    }else {
+                        Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                }else if(title.equals(OperationType.RANK)){
+                    lastMatrix.setText(FormatString.rank(matrix,oneRowNum)+"");
+                }else if (title.equals(OperationType.INVERSE)){
+                    if (oneRowNum==oneColNum){
+                        lastMatrix.setText(FormatString.inverse(matrix,oneRowNum));
+                    }else {
+                        Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
                 }
                 showLast();
                 break;
@@ -191,7 +208,6 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                     resultAnim(matrixResult);
                     oneRowNum = Integer.parseInt(editRowNum.getText().toString());
                     oneColNum = Integer.parseInt(editColNum.getText().toString());
-
                 } else {
                     Toast.makeText(SingleOperationActivity.this, "输入的数据不能形成一个矩阵", Toast.LENGTH_LONG).show();
                 }
