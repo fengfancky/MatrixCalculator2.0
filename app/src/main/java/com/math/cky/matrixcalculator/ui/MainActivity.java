@@ -133,7 +133,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         if (id == R.id.num_mul) {
-            // Handle the camera action
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.NUM_TIME);
+            startActivity(intent);
         } else if (id == R.id.add_sub) {
             Intent intent=new Intent(MainActivity.this,AddAndSubOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.ADD_SUB);
@@ -142,8 +144,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(MainActivity.this,AddAndSubOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.TIME);
             startActivity(intent);
-        } else if (id == R.id.nav_manage) {
-
+        }else if(id==R.id.conjugate){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.CONJUGATE);
+            startActivity(intent);
+        }else if(id==R.id.nav_det){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.DEL);
+            startActivity(intent);
+        }else if (id == R.id.nav_manage) {
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.EIGEN_VALUES);
+            startActivity(intent);
+        }else if(id==R.id.nav_rank){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.RANK);
+            startActivity(intent);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
