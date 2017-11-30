@@ -144,10 +144,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(MainActivity.this,AddAndSubOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.TIME);
             startActivity(intent);
-        }else if(id==R.id.conjugate){
-            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
-            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.CONJUGATE);
-            startActivity(intent);
         }else if(id==R.id.nav_det){
             Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.DEL);
@@ -164,7 +160,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.INVERSE);
             startActivity(intent);
-        } else if (id == R.id.nav_share) {
+        }else if (id==R.id.nav_triangle){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.LUDECOMPOSITION);
+            startActivity(intent);
+        }else if (id==R.id.nav_qr){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.QRDECOMPOSITION);
+            startActivity(intent);
+        }else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 

@@ -8,8 +8,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.BounceInterpolator;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -32,13 +34,13 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
 
     private String title;
     private EditText editRowNum,editColNum,editMatrix;
-    private TextView clear,ok,result,result1,lastMatrix;
+    private TextView clear,ok;
     private CardView matrixResult,matrixResult1;
     private int flag=0;//用于判断是第一个矩阵还是第二个矩阵；
     private RadioButton radioButton,radioButton2;
     private FloatingActionButton fab;
     private RadioGroup radioGroup;
-    private LinearLayout content;
+    private LinearLayout content,resultTextLayout,resultTextLayout1,last_matrix_layout;
     private String type="TYPE_NULL";
     private final static String ADD="ADD";
     private final static String SUB="SUB";
@@ -82,8 +84,10 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
         editMatrix= (EditText) findViewById(R.id.edit_matrix);
         clear= (TextView) findViewById(R.id.clear_but);
         ok= (TextView) findViewById(R.id.ok_but);
-        result= (TextView) findViewById(R.id.result_text);
-        result1= (TextView) findViewById(R.id.result_text1);
+        resultTextLayout= (LinearLayout) findViewById(R.id.result_text_layout);
+        resultTextLayout1= (LinearLayout) findViewById(R.id.result_text_layout1);
+
+
         matrixResult= (CardView) findViewById(R.id.matrix_result);
         matrixResult1= (CardView) findViewById(R.id.matrix_result1);
         radioButton= (RadioButton) findViewById(R.id.radioButton);
@@ -91,7 +95,8 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
         fab = (FloatingActionButton) findViewById(R.id.fab);
         radioGroup= (RadioGroup) findViewById(R.id.radioGroup);
         content= (LinearLayout) findViewById(R.id.last_content);
-        lastMatrix= (TextView) findViewById(R.id.last_matrix);
+        last_matrix_layout= (LinearLayout) findViewById(R.id.last_matrix_layout);
+
         if (title.equals(OperationType.TIME)){
             fab.setImageResource(R.mipmap.ic_menu_mul_press);
         }
@@ -166,7 +171,8 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                         Toast.makeText(AddAndSubOperationActivity.this, "第一个矩阵列数不等于第二个矩阵的行数", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    lastMatrix.setText(FormatString.muls(matrix1,matrix2,oneRowNum,twoRowNum));
+
+                    showLastMatrix(last_matrix_layout,FormatString.muls(matrix1,matrix2,oneRowNum,twoRowNum),oneRowNum,twoColNum);
                     showLast();
                 }else {
                     if(isClose){
@@ -186,13 +192,12 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                         }
 
                         if (type.equals(ADD)){
-                            lastMatrix.setText(FormatString.add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())));
+                            showLastMatrix(last_matrix_layout,FormatString.add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
                             showLast();
                         }else if (type.equals(SUB)){
-                            lastMatrix.setText(FormatString.sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())));
+                            showLastMatrix(last_matrix_layout,FormatString.sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
                             showLast();
                         }else {
-
                         }
                     }
                 }
@@ -226,17 +231,19 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                 if(FormatString.isCorrectMatrix(editMatrix.getText().toString(),Integer.parseInt(editRowNum.getText().toString()),Integer.parseInt(editColNum.getText().toString()))){
                     if (flag==0){
                         matrix1=FormatString.formatString(editMatrix.getText().toString());
-                        result.setText(FormatString.addLineFeed(matrix1,Integer.parseInt(editRowNum.getText().toString()),Integer.parseInt(editColNum.getText().toString())));
-                        resultAnim(matrixResult);
                         oneRowNum=Integer.parseInt(editRowNum.getText().toString());
                         oneColNum=Integer.parseInt(editColNum.getText().toString());
+
+                        showResultMatrix(resultTextLayout,matrix1,oneRowNum,oneColNum);
+                        resultAnim(matrixResult);
                         flag=1;
                     }else if (flag==1){
                         matrix2=FormatString.formatString(editMatrix.getText().toString());
-                        result1.setText(FormatString.addLineFeed(matrix2,Integer.parseInt(editRowNum.getText().toString()),Integer.parseInt(editColNum.getText().toString())));
-                        resultAnim(matrixResult1);
                         twoRowNum=Integer.parseInt(editRowNum.getText().toString());
                         twoColNum=Integer.parseInt(editColNum.getText().toString());
+
+                        showResultMatrix(resultTextLayout1,matrix2,twoRowNum,twoColNum);
+                        resultAnim(matrixResult1);
                         flag=0;
                     }
                 }else {
@@ -246,7 +253,38 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
         }
     }
 
+    private void showResultMatrix(LinearLayout view,String matrix,int row,int col){
+        view.removeAllViews();
+        LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        for (int i=0;i<col;i++){
+            TextView textView=new TextView(AddAndSubOperationActivity.this);
+            textView.setLayoutParams(layoutParams);
+            textView.setPadding(10,10,10,10);
+            textView.setGravity(Gravity.LEFT);
+            textView.setTextSize(18);
+            textView.setText(FormatString.getStringArrayByString(matrix,row,col)[i]);
+            view.addView(textView);
+        }
+    }
+
+    private void showLastMatrix(LinearLayout view,String matrix,int row,int col){
+        view.removeAllViews();
+        LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        for (int i=0;i<col;i++){
+            TextView textView=new TextView(AddAndSubOperationActivity.this);
+            textView.setLayoutParams(layoutParams);
+            textView.setPadding(10,10,10,10);
+            textView.setGravity(Gravity.LEFT);
+            textView.setTextSize(18);
+            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(matrix),row,col)[i]);
+            view.addView(textView);
+        }
+    }
+
     private void resultAnim(View view){
+        view.setAlpha(0.0f);
+        view.setScaleX(0.0f);
+        view.setScaleY(0.0f);
         view.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(500).setInterpolator(new BounceInterpolator()).start();
     }
 
@@ -259,6 +297,9 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
     }
 
     private void showLast(){
+        content.setAlpha(0.0f);
+        content.setScaleX(0.0f);
+        content.setScaleY(0.0f);
         content.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(500).setInterpolator(new BounceInterpolator()).start();
     }
 
@@ -278,16 +319,14 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
             case R.id.matrix_result:
                 flag=0;
                 matrix1="";
-                result.setText("");
-                v.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(500).setInterpolator(new BounceInterpolator()).start();
+                v.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(400).start();
                 oneColNum=0;
                 oneRowNum=0;
                 break;
             case R.id.matrix_result1:
                 flag=1;
                 matrix2="";
-                result1.setText("");
-                v.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(500).setInterpolator(new BounceInterpolator()).start();
+                v.animate().alpha(0.0f).scaleX(0.0f).scaleY(0.0f).setDuration(400).start();
                 twoColNum=0;
                 twoRowNum=0;
                 break;

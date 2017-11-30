@@ -15,4 +15,6 @@ public class OperationType {
     public static final String EIGEN_VALUES="特征值";
     public static final String RANK="秩";
     public static final String INVERSE="逆";
+    public static final String LUDECOMPOSITION="LU分解";
+    public static final String QRDECOMPOSITION="QR分解";
 }

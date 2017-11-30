@@ -142,7 +142,6 @@
                             android:hint="数乘常数"
                             android:digits="0123456789"
                             android:maxLines="1"
-                            android:maxLength="2"
                             android:inputType="number"
                             android:textSize="14sp"
                             android:background="@null"
@@ -179,7 +178,7 @@
                         android:layout_marginRight="10dp"
                         android:hint="请输入矩阵"
                         android:digits="0123456789 -+.i\n"
-                        android:textSize="14sp"
+                        android:textSize="18sp"
                         android:background="@null"
                         android:textColorHint="@color/grayAAAAAA"/>
                 </android.support.design.widget.TextInputLayout>
@@ -245,12 +244,11 @@
                         android:alpha="0.0"
                         android:scaleY="0.0"
                         android:scaleX="0.0">
-                        <TextView
-                            android:id="@+id/result_text"
+                        <LinearLayout
+                            android:id="@+id/result_layout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:textSize="16sp" />
+                            android:orientation="horizontal"></LinearLayout>
                     </android.support.v7.widget.CardView>
 
 
@@ -288,12 +286,18 @@
                         app:elevation="10dp"
                         app:cardUseCompatPadding="true"
                         app:cardPreventCornerOverlap="true">
-                        <TextView
-                            android:id="@+id/last_matrix"
+
+                        <LinearLayout
+                            android:id="@+id/last_matrix_layout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:padding="10dp"
-                            android:textSize="16sp" />
+                            android:orientation="horizontal"></LinearLayout>
+                        <!--<TextView-->
+                            <!--android:id="@+id/last_matrix"-->
+                            <!--android:layout_width="wrap_content"-->
+                            <!--android:layout_height="wrap_content"-->
+                            <!--android:padding="10dp"-->
+                            <!--android:textSize="16sp" />-->
                     </android.support.v7.widget.CardView>
                 </HorizontalScrollView>
 

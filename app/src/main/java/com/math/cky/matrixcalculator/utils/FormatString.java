@@ -1,10 +1,12 @@
 package com.math.cky.matrixcalculator.utils;
 
+import android.support.v7.widget.CardView;
 import android.util.Log;
 
 
 import java.text.DecimalFormat;
 
+import Jama.LUDecomposition;
 import Jama.Matrix;
 
 /**
@@ -93,6 +95,35 @@ public class FormatString {
             }
         }
         return doubles;
+    }
+
+    /**
+     * 将字符从新按列归类
+     * @param str
+     * @return
+     */
+    public static String[] getStringArrayByString(String str,int row,int col){
+        String[] result=new String[col];
+        String[] array=str.trim().split(" ");
+        for (int j=0;j<result.length;j++){
+            int count=0;
+            StringBuffer stringBuffer=new StringBuffer("");
+            for (int i=0;i<array.length;i++){
+                if (i%col==j){
+                    count++;
+                    if (count<row){
+                        stringBuffer.append(array[i]).append("\n");
+                    }else {
+                        stringBuffer.append(array[i]);
+                    }
+                }else {
+                    continue;
+                }
+            }
+
+            result[j]=stringBuffer.toString();
+        }
+        return result;
     }
 
 
@@ -195,7 +226,8 @@ public class FormatString {
      * 特征值与特征向量
      */
     public static String[] values(String string1,int rowNum1){
-        DecimalFormat df = new java.text.DecimalFormat("###.###");
+
+        DecimalFormat df1 = new DecimalFormat("#E0");
         String[] result=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix_det1=new Matrix(double1);
@@ -208,14 +240,14 @@ public class FormatString {
         StringBuffer eigenvalues=new StringBuffer("特征值：\n");
 
         for (int i=0;i<matrixReal.length;i++){
-            String realStr=df.format(matrixReal[i]);
+            String realStr=matrixReal[i]+"";
             String imgStr="";
             if (matrixImg[i]==0.0){
                  imgStr="";
             }else if (matrixImg[i]>0){
-                 imgStr="+"+df.format(matrixImg[i])+"i";
+                 imgStr="+"+matrixImg[i]+"i";
             }else {
-                 imgStr=df.format(matrixImg[i])+"i";
+                 imgStr=matrixImg[i]+"i";
             }
             eigenvalues.append(realStr+imgStr);
             if (i==matrixReal.length-1){
@@ -229,19 +261,14 @@ public class FormatString {
         //特征向量
         StringBuffer eigenvector=new StringBuffer("特征向量：\n");
 
-        Log.i(TAG, "valuesV: \n"+printMatrix(getStringMatrix(matrixV)));
-        Log.i(TAG, "valuesD: \n"+printMatrix(getStringMatrix(matrixD)));
-//        Log.i(TAG, "valuesImg: \n"+getStringByDouble(matrixImg));
-//        Log.i(TAG, "valuesReal: \n"+getStringByDouble(matrixReal));
-
         double[][] matrixStr=matrixV.getArray();
         for (int j=0;j<matrixStr.length;j++){
             StringBuffer vector=new StringBuffer("向量"+(j+1)+":\n ");
             for (int k=0;k<matrixStr.length;k++){
                 if (k==matrixStr.length-1){
-                    vector.append(df.format(matrixStr[k][j])+"  ");
+                    vector.append(matrixStr[k][j]+"  ");
                 }else {
-                    vector.append(df.format(matrixStr[k][j])+",  ");
+                    vector.append(matrixStr[k][j]+",  ");
                 }
             }
             eigenvector.append(vector);
@@ -260,6 +287,12 @@ public class FormatString {
         return matrix.rank();
     }
 
+    /**
+     * 求矩阵的逆
+     * @param string1
+     * @param rowNum1
+     * @return
+     */
     public static String inverse(String string1,int rowNum1){
         String result="";
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
@@ -272,6 +305,63 @@ public class FormatString {
         return result;
     }
 
+    /**
+     * lu分解，获取上三角、下三角矩阵
+     * @param string1
+     * @param rowNum1
+     * @return
+     */
+    public static String[] luDecomposition(String string1,int rowNum1){
+        String[] results=new String[2];
+        double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
+        Matrix matrix=new Matrix(double1);
+        LUDecomposition lu=null;
+        try{
+            lu=new LUDecomposition(matrix);
+        }catch (ArrayIndexOutOfBoundsException e){
+
+        }
+
+        try{
+            Matrix l=lu.getL();
+            results[0]=printMatrix(getStringMatrix(l));
+        }catch (Exception e){
+            e.printStackTrace();
+            results[0]="计算出错";
+        }
+
+        try{
+            Matrix u=lu.getU();
+            results[1]=printMatrix(getStringMatrix(u));
+        }catch (Exception e){
+            results[1]="计算出错";
+        }
+
+        return results;
+    }
+    public static String[] qrDecomposition(String string1,int rowNum1){
+        String[] results=new String[2];
+        double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
+        Matrix matrix=new Matrix(double1);
+
+        try{
+            Matrix q=matrix.qr().getQ();
+            results[0]=printMatrix(getStringMatrix(q));
+        } catch (Exception e){
+            results[0]="计算错误";
+        }
+
+        try{
+            Matrix r=matrix.qr().getR();
+            results[1]=printMatrix(getStringMatrix(r));
+        }catch (Exception e){
+            results[1]="计算错误";
+        }
+
+        return results;
+    }
+
+
 
     /**
      * 将矩阵转换成二维字符串
@@ -279,6 +369,7 @@ public class FormatString {
      * @return
      */
     public static String[][] getStringMatrix(Matrix matrix) {
+
         double[][] doubles=matrix.getArray();
         String[][] strMatrix=new String[doubles.length][doubles[0].length];
         for (int i=0;i<doubles.length;i++){
@@ -299,7 +390,7 @@ public class FormatString {
         String str="";
         for (int i=0;i<matrix.length;i++){
             for (int j=0;j<matrix[0].length;j++){
-                str+=matrix[i][j]+" ";
+                str+=matrix[i][j]+"  ";
             }
             if (i!=matrix.length-1)
                 str+="\n";
