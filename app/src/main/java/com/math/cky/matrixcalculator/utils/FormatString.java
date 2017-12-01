@@ -339,6 +339,13 @@ public class FormatString {
 
         return results;
     }
+
+    /**
+     * QR分解
+     * @param string1
+     * @param rowNum1
+     * @return
+     */
     public static String[] qrDecomposition(String string1,int rowNum1){
         String[] results=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
@@ -358,6 +365,34 @@ public class FormatString {
             results[1]="计算错误";
         }
 
+        return results;
+    }
+
+    public static String[] svdDecomposition(String string1,int rowNum1){
+
+        String[] results=new String[3];
+        double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
+        Matrix matrix=new Matrix(double1);
+        try{
+            Matrix s= matrix.svd().getS();
+            results[0]=printMatrix(getStringMatrix(s));
+        }catch (Exception e){
+            results[0]="计算错误";
+        }
+
+        try{
+            Matrix v= matrix.svd().getV();
+            results[1]=printMatrix(getStringMatrix(v));
+        }catch (Exception e){
+            results[1]="计算错误";
+        }
+
+        try{
+            Matrix u= matrix.svd().getU();
+            results[2]=printMatrix(getStringMatrix(u));
+        }catch (Exception e){
+            results[2]="计算错误";
+        }
         return results;
     }
 

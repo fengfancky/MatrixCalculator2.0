@@ -23,7 +23,7 @@ public class CheeseListFragment extends Fragment {
         des.setText(title);
         return view;
     }
-    public CheeseListFragment(String title){
+    public void setTitle(String title){
         this.title=title;
     }
 }

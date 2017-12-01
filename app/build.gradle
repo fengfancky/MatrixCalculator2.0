@@ -29,4 +29,5 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile project(':library')
     compile files('libs/Jama.jar')
+    compile files('libs/universal-image-loader-1.9.0.jar')
 }

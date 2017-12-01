@@ -3,27 +3,25 @@ package com.math.cky.matrixcalculator.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.ActionBar;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.conf.OperationType;
 import com.math.cky.matrixcalculator.fragment.BasicOperationFragment;
-import com.math.cky.matrixcalculator.fragment.CheeseListFragment;
 import com.math.cky.matrixcalculator.fragment.DeterminantFragment;
 import com.math.cky.matrixcalculator.fragment.MatrixDefineFragment;
 import com.math.cky.matrixcalculator.fragment.MatrixHistoryFragment;
@@ -84,14 +82,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         adapter.addFragment(new DeterminantFragment(),typeList[2]);
         adapter.addFragment(new RankFragment(),typeList[3]);
         adapter.addFragment(new MatrixHistoryFragment(),typeList[4]);
-        for (int i=5;i<typeList.length;i++){
-            adapter.addFragment(new CheeseListFragment(typeList[i]),typeList[i]);
-        }
+//        for (int i=5;i<typeList.length;i++){
+//            adapter.addFragment(new CheeseListFragment(typeList[i]),typeList[i]);
+//        }
         viewPager.setAdapter(adapter);
     }
 
     private void initDate(){
-        typeList=new String[]{"定义","基本运算","行列式","矩阵的秩","历史","矩阵的迹","正定性","矩阵的分解","特殊类别","范数","应用"};
+        typeList=new String[]{"定义","基本运算","行列式","矩阵的秩","历史"};
     }
 
     @Override
@@ -167,6 +165,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }else if (id==R.id.nav_qr){
             Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
             intent.putExtra(OperationType.OPERATION_TYPE,OperationType.QRDECOMPOSITION);
+            startActivity(intent);
+        }else if (id==R.id.nav_s){
+            Intent intent=new Intent(MainActivity.this,SingleOperationActivity.class);
+            intent.putExtra(OperationType.OPERATION_TYPE,OperationType.SDECOMPOSITION);
             startActivity(intent);
         }else if (id == R.id.nav_share) {
 

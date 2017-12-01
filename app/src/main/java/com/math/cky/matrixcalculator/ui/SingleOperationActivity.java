@@ -98,6 +98,8 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             fab.setImageResource(R.mipmap.ic_triangle_press);
         }else if (title.equals(OperationType.QRDECOMPOSITION)){
             fab.setImageResource(R.mipmap.ic_qr_press);
+        }else if (title.equals(OperationType.SDECOMPOSITION)){
+            fab.setImageResource(R.mipmap.ic_s_press);
         }
     }
 
@@ -188,11 +190,18 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
 
                 }else if (title.equals(OperationType.LUDECOMPOSITION)){
                     //三角分解
-                    showDecompositionMatrix("L矩阵：","U矩阵：",FormatString.luDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+                    if(oneRowNum==oneColNum){
+                        showDecompositionMatrix("L矩阵：","U矩阵：",FormatString.luDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+                    }else {
+                        Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
 
                 }else if (title.equals(OperationType.QRDECOMPOSITION)){
                     //QR分解
                     showDecompositionMatrix("Q矩阵：","R矩阵：",FormatString.qrDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+                }else if (title.equals(OperationType.SDECOMPOSITION)){
+                    sDecomposittion(FormatString.svdDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
                 }
                 showLast();
                 break;
@@ -330,6 +339,99 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
 
         lastMatrixLayout.addView(linearLayout);
     }
+
+    private void sDecomposittion(String[] strings,int row,int col){
+        lastMatrixLayout.removeAllViews();
+        LinearLayout.LayoutParams layoutParams=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        LinearLayout linearLayout=new LinearLayout(this);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+        linearLayout.setPadding(5,5,5,5);
+        linearLayout.setLayoutParams(layoutParams);
+
+        TextView textViewS=new TextView(this);
+        textViewS.setLayoutParams(layoutParams);
+        textViewS.setPadding(10,10,10,10);
+        textViewS.setGravity(Gravity.LEFT);
+        textViewS.setTextSize(18);
+        textViewS.setText("S矩阵：");
+        linearLayout.addView(textViewS);
+
+        LinearLayout linearLayout1=new LinearLayout(this);
+        linearLayout1.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout1.setLayoutParams(layoutParams);
+        linearLayout1.setPadding(10,0,20,0);
+        for (int i=0;i<col;i++){
+            TextView textView=new TextView(SingleOperationActivity.this);
+            textView.setLayoutParams(layoutParams);
+            textView.setPadding(10,10,10,10);
+            textView.setGravity(Gravity.LEFT);
+            textView.setTextSize(18);
+            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[0]),row,col)[i]);
+            linearLayout1.addView(textView);
+        }
+        linearLayout.addView(linearLayout1);
+
+        LinearLayout.LayoutParams layoutParams1=new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
+        View view=new View(this);
+        view.setLayoutParams(layoutParams1);
+        view.setBackgroundColor(getResources().getColor(R.color.grayCCCCCC));
+        linearLayout.addView(view);
+
+        TextView textViewV=new TextView(this);
+        textViewV.setLayoutParams(layoutParams);
+        textViewV.setPadding(10,10,10,10);
+        textViewV.setGravity(Gravity.LEFT);
+        textViewV.setTextSize(18);
+        textViewV.setText("V矩阵：");
+        linearLayout.addView(textViewV);
+
+        LinearLayout linearLayout2=new LinearLayout(this);
+        linearLayout2.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout2.setLayoutParams(layoutParams);
+        linearLayout2.setPadding(20,0,10,0);
+        for (int i=0;i<col;i++){
+            TextView textView=new TextView(SingleOperationActivity.this);
+            textView.setLayoutParams(layoutParams);
+            textView.setPadding(10,10,10,10);
+            textView.setGravity(Gravity.LEFT);
+            textView.setTextSize(18);
+            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[1]),row,col)[i]);
+            linearLayout2.addView(textView);
+        }
+        linearLayout.addView(linearLayout2);
+
+        View view2=new View(this);
+        view2.setLayoutParams(layoutParams1);
+        view2.setBackgroundColor(getResources().getColor(R.color.grayCCCCCC));
+        linearLayout.addView(view2);
+
+        TextView textViewU=new TextView(this);
+        textViewU.setLayoutParams(layoutParams);
+        textViewU.setPadding(10,10,10,10);
+        textViewU.setGravity(Gravity.LEFT);
+        textViewU.setTextSize(18);
+        textViewU.setText("U矩阵：");
+        linearLayout.addView(textViewU);
+
+        LinearLayout linearLayout3=new LinearLayout(this);
+        linearLayout3.setOrientation(LinearLayout.HORIZONTAL);
+        linearLayout3.setLayoutParams(layoutParams);
+        linearLayout3.setPadding(20,0,10,0);
+        for (int i=0;i<col;i++){
+            TextView textView=new TextView(SingleOperationActivity.this);
+            textView.setLayoutParams(layoutParams);
+            textView.setPadding(10,10,10,10);
+            textView.setGravity(Gravity.LEFT);
+            textView.setTextSize(18);
+            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[2]),row,col)[i]);
+            linearLayout3.addView(textView);
+        }
+        linearLayout.addView(linearLayout3);
+
+        lastMatrixLayout.addView(linearLayout);
+    }
+
 
     /**
      * 展示运算结果matrix

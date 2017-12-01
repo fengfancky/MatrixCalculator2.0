@@ -36,4 +36,6 @@
     <string name="matrix_rank_define4">定理 初等变换不改变矩阵的秩。</string>
     <string name="matrix_rank_define5">定理 矩阵的乘积的秩Rab小于等于min{Ra,Rb};</string>
 
+
+
 </resources>

@@ -42,6 +42,10 @@
             android:id="@+id/nav_qr"
             android:icon="@drawable/ic_menu_qr"
             android:title="QR分解" />
+        <item
+            android:id="@+id/nav_s"
+            android:icon="@drawable/ic_menu_s"
+            android:title="奇异值分解" />
     </group>
 
     <item android:title="更多">

@@ -17,4 +17,5 @@ public class OperationType {
     public static final String INVERSE="逆";
     public static final String LUDECOMPOSITION="LU分解";
     public static final String QRDECOMPOSITION="QR分解";
+    public static final String SDECOMPOSITION="奇异值分解";
 }
