@@ -15,20 +15,17 @@ import com.math.cky.matrixcalculator.ui.SpaceImageDetailActivity;
 /**
  * Created by chen on 2017/6/14.
  */
-public class DeterminantFragment extends Fragment {
+public class MulFragment extends Fragment implements View.OnClickListener {
 
-    private ImageView det_img;
+    private ImageView matrix_mul_img,matrix_mul_exam_img;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view=LayoutInflater.from(getActivity()).inflate(R.layout.determinant_layout,container,false);
-        det_img= (ImageView) view.findViewById(R.id.det_img);
-        det_img.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goToImageDetail(det_img,R.mipmap.det);
-            }
-        });
+        View view=LayoutInflater.from(getActivity()).inflate(R.layout.mul_layout,container,false);
+        matrix_mul_img= (ImageView) view.findViewById(R.id.matrix_mul_img);
+        matrix_mul_exam_img= (ImageView) view.findViewById(R.id.matrix_mul_exam_img);
+        matrix_mul_img.setOnClickListener(this);
+        matrix_mul_exam_img.setOnClickListener(this);
         return view;
     }
 
@@ -43,5 +40,17 @@ public class DeterminantFragment extends Fragment {
         intent.putExtra("height", view.getHeight());
         startActivity(intent);
         getActivity().overridePendingTransition(0,0);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.matrix_mul_img:
+                goToImageDetail(matrix_mul_img,R.mipmap.matrix_mul);
+                break;
+            case R.id.matrix_mul_exam_img:
+                goToImageDetail(matrix_mul_exam_img,R.mipmap.matrix_mul_exam);
+                break;
+        }
     }
 }

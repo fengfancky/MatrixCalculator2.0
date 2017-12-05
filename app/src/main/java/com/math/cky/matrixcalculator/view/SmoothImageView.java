@@ -16,8 +16,6 @@ import android.util.Log;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.ImageView;
 
-import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
-
 /**
  * 2d平滑变化的显示图片的ImageView
  * 仅限于用于:从一个ScaleType==CENTER_CROP的ImageView，切换到另一个ScaleType=

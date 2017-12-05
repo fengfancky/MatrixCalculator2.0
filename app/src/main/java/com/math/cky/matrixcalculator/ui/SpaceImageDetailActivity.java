@@ -31,7 +31,7 @@ public class SpaceImageDetailActivity extends AppCompatActivity {
 		imageView = new SmoothImageView(this);
 		imageView.setOriginalInfo(mWidth, mHeight, mLocationX, mLocationY);
 		imageView.transformIn();
-		imageView.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+		imageView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
 		imageView.setScaleType(ScaleType.FIT_CENTER);
 		setContentView(imageView);
 

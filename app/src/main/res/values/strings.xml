@@ -3,8 +3,13 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="exit_app">再按一次退出</string>
 
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">设置</string>
+    <string name="action_history">历史</string>
+    <string name="action_delete">删除</string>
+    <string name="action_des">删除所有记录</string>
+
     <string name="matrix_define_one">在数学中，矩阵（Matrix）是一个按照长方阵列排列的复数或实数集合，最早来自于方程组的系数及常数所构成的方阵。这一概念由19世纪英国数学家凯利首先提出。</string>
     <string name="matrix_define_four">元素是实数的矩阵称为实矩阵，元素是复数的矩阵称为复矩阵。而行数与列数都等于n的矩阵称为n阶矩阵或n阶方阵。</string>
     <string name="matrix_define_five">矩阵是高等代数学中的常见工具，也常见于统计分析等应用数学学科中。 在物理学中，矩阵于电路学、力学、光学和量子物理中都有应用；计算机科学中，三维动画制作也需要用到矩阵。 矩阵的运算是数值分析领域的重要问题。将矩阵分解为简单矩阵的组合可以在理论和实际应用上简化矩阵的运算。对一些应用广泛而形式特殊的矩阵，例如稀疏矩阵和准对角矩阵，有特定的快速运算算法。关于矩阵相关理论的发展和应用，请参考矩阵理论。在天体物理、量子力学等领域，也会出现无穷维的矩阵，是矩阵的一种推广。</string>
@@ -36,6 +41,6 @@
     <string name="matrix_rank_define4">定理 初等变换不改变矩阵的秩。</string>
     <string name="matrix_rank_define5">定理 矩阵的乘积的秩Rab小于等于min{Ra,Rb};</string>
 
-
-
+    <string name="matrix_mul_des">矩阵相乘最重要的方法是一般矩阵乘积。它只有在第一个矩阵的列数（column）和第二个矩阵的行数（row）相同时才有意义。一般单指矩阵乘积时，指的便是一般矩阵乘积。一个m×n的矩阵就是m×n个数排成m行n列的一个数阵。由于它把许多数据紧凑的集中到了一起，所以有时候可以简便地表示一些复杂的模型。</string>
+    <string name="matrix_mul_define">设A为 m*p 的矩阵，B为 p*n 的矩阵，那么称 m*n 的矩阵C为矩阵A与B的乘积，记作 C=AB，其中矩阵C中的第i行第j列元素可以表示为：</string>
 </resources>

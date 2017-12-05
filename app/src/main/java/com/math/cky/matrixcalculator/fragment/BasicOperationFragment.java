@@ -16,7 +16,7 @@ import com.math.cky.matrixcalculator.ui.SpaceImageDetailActivity;
  * Created by chen on 2017/6/12.
  */
 public class BasicOperationFragment extends Fragment implements View.OnClickListener{
-    private ImageView add_img,sub_img,num_mul_img,trans_img,mul_other_img,trans_other_img;
+    private ImageView add_img,sub_img,num_mul_img,trans_img,mul_other_img,trans_other_img,e_img1,e_img2,e_img3,et_img1,et_img2,et_img3,et_img4;
 
     @Nullable
     @Override
@@ -28,12 +28,27 @@ public class BasicOperationFragment extends Fragment implements View.OnClickList
         trans_img= (ImageView) view.findViewById(R.id.trans_img);
         mul_other_img= (ImageView) view.findViewById(R.id.mul_other_img);
         trans_other_img= (ImageView) view.findViewById(R.id.trans_other_img);
+        e_img1= (ImageView) view.findViewById(R.id.e_img1);
+        e_img2= (ImageView) view.findViewById(R.id.e_img2);
+        e_img3= (ImageView) view.findViewById(R.id.e_img3);
+        et_img1= (ImageView) view.findViewById(R.id.et_img1);
+        et_img2= (ImageView) view.findViewById(R.id.et_img2);
+        et_img3= (ImageView) view.findViewById(R.id.et_img3);
+        et_img4= (ImageView) view.findViewById(R.id.et_img4);
+
         add_img.setOnClickListener(this);
         sub_img.setOnClickListener(this);
         num_mul_img.setOnClickListener(this);
         trans_img.setOnClickListener(this);
         mul_other_img.setOnClickListener(this);
         trans_other_img.setOnClickListener(this);
+        e_img1.setOnClickListener(this);
+        e_img2.setOnClickListener(this);
+        e_img3.setOnClickListener(this);
+        et_img1.setOnClickListener(this);
+        et_img2.setOnClickListener(this);
+        et_img3.setOnClickListener(this);
+        et_img4.setOnClickListener(this);
         return view;
     }
 
@@ -57,6 +72,27 @@ public class BasicOperationFragment extends Fragment implements View.OnClickList
                 break;
             case R.id.trans_other_img:
                 goToImageDetail(trans_other_img,R.mipmap.trans_other);
+                break;
+            case R.id.e_img1:
+                goToImageDetail(e_img1,R.mipmap.e);
+                break;
+            case R.id.e_img2:
+                goToImageDetail(e_img2,R.mipmap.et3);
+                break;
+            case R.id.e_img3:
+                goToImageDetail(e_img3,R.mipmap.e3);
+                break;
+            case R.id.et_img1:
+                goToImageDetail(et_img1,R.mipmap.et1);
+                break;
+            case R.id.et_img2:
+                goToImageDetail(et_img2,R.mipmap.et2);
+                break;
+            case R.id.et_img3:
+                goToImageDetail(et_img3,R.mipmap.et3);
+                break;
+            case R.id.et_img4:
+                goToImageDetail(et_img4,R.mipmap.et4);
                 break;
 
         }

@@ -2,6 +2,7 @@ package com.math.cky.matrixcalculator.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.conf.OperationType;
@@ -25,6 +28,7 @@ import com.math.cky.matrixcalculator.fragment.BasicOperationFragment;
 import com.math.cky.matrixcalculator.fragment.DeterminantFragment;
 import com.math.cky.matrixcalculator.fragment.MatrixDefineFragment;
 import com.math.cky.matrixcalculator.fragment.MatrixHistoryFragment;
+import com.math.cky.matrixcalculator.fragment.MulFragment;
 import com.math.cky.matrixcalculator.fragment.RankFragment;
 
 import java.util.ArrayList;
@@ -34,6 +38,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private String[] typeList;
+    private boolean flag=false;
+    private  FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,17 +50,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
 
-
-
         initDate();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -79,17 +83,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Adapter adapter = new Adapter(getSupportFragmentManager());
         adapter.addFragment(new MatrixDefineFragment(),typeList[0]);
         adapter.addFragment(new BasicOperationFragment(),typeList[1]);
-        adapter.addFragment(new DeterminantFragment(),typeList[2]);
-        adapter.addFragment(new RankFragment(),typeList[3]);
-        adapter.addFragment(new MatrixHistoryFragment(),typeList[4]);
-//        for (int i=5;i<typeList.length;i++){
-//            adapter.addFragment(new CheeseListFragment(typeList[i]),typeList[i]);
-//        }
+        adapter.addFragment(new MulFragment(),typeList[2]);
+        adapter.addFragment(new DeterminantFragment(),typeList[3]);
+        adapter.addFragment(new RankFragment(),typeList[4]);
+        adapter.addFragment(new MatrixHistoryFragment(),typeList[5]);
         viewPager.setAdapter(adapter);
     }
 
     private void initDate(){
-        typeList=new String[]{"定义","基本运算","行列式","矩阵的秩","历史"};
+        typeList=new String[]{"定义","基本运算","矩阵乘法","行列式","矩阵的秩","历史"};
     }
 
     @Override
@@ -98,7 +100,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (!flag) {
+                flag = true;
+                Snackbar snackbar=Snackbar.make(fab,R.string.exit_app,Snackbar.LENGTH_SHORT);
+                ((TextView)snackbar.getView().findViewById(R.id.snackbar_text)).setTextColor(0xffffffff);
+                snackbar.show();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        flag = false;
+                    }
+                }, 2000);
+                return;
+            }else {
+                getApplication().onTerminate();
+                finish();
+            }
         }
     }
 
@@ -118,9 +135,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
+        }else {
+            Intent intent=new Intent(this,HistoryActivity.class);
+            startActivity(intent);
         }
-
         return super.onOptionsItemSelected(item);
     }
 

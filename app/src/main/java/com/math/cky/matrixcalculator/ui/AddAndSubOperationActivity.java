@@ -23,6 +23,8 @@ import android.widget.Toast;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.conf.OperationType;
+import com.math.cky.matrixcalculator.database.MyDataHelper;
+import com.math.cky.matrixcalculator.database.MyDatebase;
 import com.math.cky.matrixcalculator.utils.FormatString;
 import com.math.cky.matrixcalculator.utils.Utils;
 
@@ -49,6 +51,7 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
     private boolean isClose=true;
     private String matrix1,matrix2;
     private int oneRowNum,oneColNum,twoRowNum,twoColNum;
+    private MyDatebase myDatebase;
 
 
     @Override
@@ -166,14 +169,27 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                     return;
                 }
 
+                myDatebase=new MyDatebase(AddAndSubOperationActivity.this, "matrix", null, 1);
+                MyDataHelper myDataHelper=new MyDataHelper(myDatebase,AddAndSubOperationActivity.this);
+                long time=System.currentTimeMillis();
+                String arg1="";
+                String arg2="";
+                String historyResult="";
+                String history_type="";
+
                 if (title.equals(OperationType.TIME)){
                     if (oneColNum!=twoRowNum){
                         Toast.makeText(AddAndSubOperationActivity.this, "第一个矩阵列数不等于第二个矩阵的行数", Toast.LENGTH_LONG).show();
                         return;
                     }
-
                     showLastMatrix(last_matrix_layout,FormatString.muls(matrix1,matrix2,oneRowNum,twoRowNum),oneRowNum,twoColNum);
                     showLast();
+
+                    history_type=OperationType.TIME;
+                    arg1=matrix1+","+oneRowNum+","+oneColNum;
+                    arg2=matrix2+","+twoRowNum+","+twoColNum;
+                    historyResult=FormatString.muls(matrix1,matrix2,oneRowNum,twoRowNum)+","+oneRowNum+","+twoColNum;
+                    myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
                 }else {
                     if(isClose){
                         showAnim();
@@ -191,15 +207,32 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                             return;
                         }
 
+
                         if (type.equals(ADD)){
                             showLastMatrix(last_matrix_layout,FormatString.add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
                             showLast();
+
+                            history_type="矩阵加法";
+                            arg1=matrix1+","+oneRowNum+","+oneColNum;
+                            arg2=matrix2+","+twoRowNum+","+twoColNum;
+                            historyResult=FormatString.add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString()))+","+oneRowNum+","+oneColNum;
+                            myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
+
                         }else if (type.equals(SUB)){
                             showLastMatrix(last_matrix_layout,FormatString.sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
                             showLast();
+
+                            history_type="矩阵减法";
+                            arg1=matrix1+","+oneRowNum+","+oneColNum;
+                            arg2=matrix2+","+twoRowNum+","+twoColNum;
+                            historyResult=FormatString.sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString()))+","+oneRowNum+","+oneColNum;
+                            myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
                         }else {
                         }
+
                     }
+
+
                 }
 
                 break;
@@ -259,7 +292,7 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
         for (int i=0;i<col;i++){
             TextView textView=new TextView(AddAndSubOperationActivity.this);
             textView.setLayoutParams(layoutParams);
-            textView.setPadding(10,10,10,10);
+            textView.setPadding(5,5,5,5);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.getStringArrayByString(matrix,row,col)[i]);

@@ -208,7 +208,8 @@
                             android:id="@+id/result_text_layout"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"></LinearLayout>
+                            android:orientation="horizontal"
+                            android:padding="5dp"></LinearLayout>
                     </android.support.v7.widget.CardView>
 
                     <android.support.v7.widget.CardView
@@ -230,7 +231,8 @@
                             android:id="@+id/result_text_layout1"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="horizontal"></LinearLayout>
+                            android:orientation="horizontal"
+                            android:padding="5dp"></LinearLayout>
                     </android.support.v7.widget.CardView>
 
 

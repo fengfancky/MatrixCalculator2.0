@@ -81,10 +81,11 @@
                         android:text="@string/matrix_det_define1"
                         android:textSize="14sp" />
                     <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:scaleType="fitXY"
-                        android:padding="5dp"
+                        android:id="@+id/det_img"
+                        android:layout_width="300dp"
+                        android:layout_height="100dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="center_horizontal"
                         android:src="@mipmap/det"/>
 
                     <LinearLayout

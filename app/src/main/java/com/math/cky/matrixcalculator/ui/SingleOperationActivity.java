@@ -21,6 +21,8 @@ import android.widget.Toast;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.conf.OperationType;
+import com.math.cky.matrixcalculator.database.MyDataHelper;
+import com.math.cky.matrixcalculator.database.MyDatebase;
 import com.math.cky.matrixcalculator.utils.FormatString;
 
 /**
@@ -38,6 +40,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
     private String matrix;
     private int oneRowNum,oneColNum;
     private String type="TYPE_NULL";
+    private MyDatebase myDatebase;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -51,7 +54,6 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
 
     private void initIntent(){
         title=getIntent().getStringExtra(OperationType.OPERATION_TYPE);
-
     }
 
     private void initToolbar(){
@@ -149,27 +151,45 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                     return;
                 }
 
+                myDatebase=new MyDatebase(SingleOperationActivity.this, "matrix", null, 1);
+                MyDataHelper myDataHelper=new MyDataHelper(myDatebase,SingleOperationActivity.this);
+                long time=System.currentTimeMillis();
+                String arg1="";
+                String arg2="";
+                String historyResult="";
+                String history_type="";
+
                 if (title.equals(OperationType.NUM_TIME)){
                     //数乘
                     showLastMatrix(FormatString.numTimes(matrix,oneRowNum,Double.parseDouble(num.getText().toString())),oneRowNum,oneColNum);
 
-                }else if(title.equals(OperationType.CONJUGATE)){
-                    //共轭
+                    history_type=OperationType.NUM_TIME;
+                    arg1=matrix+","+oneRowNum+","+oneColNum;
+                    arg2=Double.parseDouble(num.getText().toString())+"";
+                    historyResult=FormatString.numTimes(matrix,oneRowNum,Double.parseDouble(num.getText().toString()))+","+oneRowNum+","+oneColNum;
 
                 }else if(title.equals(OperationType.DEL)){
                     //行列式
                     if (oneRowNum==oneColNum){
                         oneLastValue(FormatString.det(matrix,oneRowNum));
+                        history_type=OperationType.DEL;
+                        arg1=matrix+","+oneRowNum+","+oneColNum;
+                        arg2="00";
+                        historyResult=FormatString.det(matrix,oneRowNum);
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
                     }
-
 
                 }else if(title.equals(OperationType.EIGEN_VALUES)){
                     //特征值与特征向量
                     if (oneRowNum==oneColNum){
                         String[] result=FormatString.values(matrix,oneRowNum);
                         oneLastValue(result[0]+"\n"+result[1]);
+
+                        history_type=OperationType.EIGEN_VALUES;
+                        arg1=matrix+","+oneRowNum+","+oneColNum;
+                        arg2="00";
+                        historyResult=result[0]+"\n"+result[1];
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
                         return;
@@ -179,10 +199,21 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                     //秩
                     oneLastValue(FormatString.rank(matrix,oneRowNum)+"");
 
+                    history_type=OperationType.RANK;
+                    arg1=matrix+","+oneRowNum+","+oneColNum;
+                    arg2="00";
+                    historyResult=FormatString.rank(matrix,oneRowNum)+"";
+
                 }else if (title.equals(OperationType.INVERSE)){
                     //逆
                     if (oneRowNum==oneColNum){
                         showLastMatrix(FormatString.inverse(matrix,oneRowNum),oneRowNum,oneColNum);
+
+                        history_type=OperationType.INVERSE;
+                        arg1=matrix+","+oneRowNum+","+oneColNum;
+                        arg2="00";
+                        historyResult=FormatString.inverse(matrix,oneRowNum)+"";
+
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
                         return;
@@ -192,6 +223,11 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                     //三角分解
                     if(oneRowNum==oneColNum){
                         showDecompositionMatrix("L矩阵：","U矩阵：",FormatString.luDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+
+                        history_type=OperationType.LUDECOMPOSITION;
+                        arg1=matrix+","+oneRowNum+","+oneColNum;
+                        arg2="00";
+                        historyResult=FormatString.luDecomposition(matrix,oneRowNum)[0]+","+FormatString.luDecomposition(matrix,oneRowNum)[1]+","+oneRowNum+","+oneColNum;
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
                         return;
@@ -200,10 +236,22 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                 }else if (title.equals(OperationType.QRDECOMPOSITION)){
                     //QR分解
                     showDecompositionMatrix("Q矩阵：","R矩阵：",FormatString.qrDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+
+                    history_type=OperationType.QRDECOMPOSITION;
+                    arg1=matrix+","+oneRowNum+","+oneColNum;
+                    arg2="00";
+                    historyResult=FormatString.qrDecomposition(matrix,oneRowNum)[0]+","+FormatString.qrDecomposition(matrix,oneRowNum)[1]+","+oneRowNum+","+oneColNum;
                 }else if (title.equals(OperationType.SDECOMPOSITION)){
+                    //SVD分解
                     sDecomposittion(FormatString.svdDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+
+                    history_type=OperationType.SDECOMPOSITION;
+                    arg1=matrix+","+oneRowNum+","+oneColNum;
+                    arg2="00";
+                    historyResult=FormatString.svdDecomposition(matrix,oneRowNum)[0]+","+FormatString.svdDecomposition(matrix,oneRowNum)[1]+","+FormatString.svdDecomposition(matrix,oneRowNum)[2]+","+oneRowNum+","+oneColNum;
                 }
                 showLast();
+                myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
                 break;
 
             case R.id.clear_but:

@@ -29,6 +29,9 @@
         <activity android:name=".ui.SpaceImageDetailActivity"
             android:theme="@style/AppTheme.Transparent"/>
 
+        <activity android:name=".ui.HistoryActivity"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 
