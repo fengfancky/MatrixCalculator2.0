@@ -32,6 +32,10 @@
         <activity android:name=".ui.HistoryActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".ui.SettingsActivity"
+            android:theme="@style/AppTheme.Setting"
+            android:screenOrientation="portrait"/>
+
 
     </application>
 

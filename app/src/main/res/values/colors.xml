@@ -5,9 +5,11 @@
     <color name="colorAccent">#FF4081</color>
     <color name="grayAAAAAA">#AAAAAA</color>
     <color name="grayCCCCCC">#CCCCCC</color>
+    <color name="grayEEEEEE">#EEEEEE</color>
     <color name="tran">#00000000</color>
     <color name="black">#333333</color>
     <color name="yellowFF9224">#FF9224</color>
     <color name="green73B534">#73B534</color>
     <color name="redDE5347">#DE5347</color>
+    <color name="white">#FFFFFF</color>
 </resources>

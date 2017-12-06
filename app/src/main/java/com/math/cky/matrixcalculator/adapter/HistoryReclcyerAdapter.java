@@ -116,8 +116,13 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
                 historyDetHolder.historyMatrixContext2.setVisibility(View.GONE);
             }else {
                 historyDetHolder.historyMatrixContext2.setVisibility(View.VISIBLE);
-                String[] stringsss=arrayList.get(position).getArg2().split(",");
-                showResultMatrix(historyDetHolder.historyMatrixResultLayout2,stringsss[0],Integer.valueOf(stringsss[1]),Integer.valueOf(stringsss[2]));
+                if (type.equals(OperationType.NUM_TIME)){
+                    String stringsss=arrayList.get(position).getArg2();
+                    oneLastValue(historyDetHolder.historyMatrixResultLayout2,stringsss);
+                }else {
+                    String[] stringsss=arrayList.get(position).getArg2().split(",");
+                    showResultMatrix(historyDetHolder.historyMatrixResultLayout2,stringsss[0],Integer.valueOf(stringsss[1]),Integer.valueOf(stringsss[2]));
+                }
 
             }
 

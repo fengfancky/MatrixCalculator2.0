@@ -135,7 +135,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this, "设置", Toast.LENGTH_SHORT).show();
+            Intent intent=new Intent(this,SettingsActivity.class);
+            startActivity(intent);
         }else {
             Intent intent=new Intent(this,HistoryActivity.class);
             startActivity(intent);
