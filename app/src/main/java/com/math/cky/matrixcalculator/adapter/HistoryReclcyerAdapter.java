@@ -219,7 +219,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(matrix,row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(matrix,row,col)[i]);
             view.addView(textView);
         }
     }
@@ -238,7 +238,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(matrix),row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(matrix),row,col)[i]);
             view.addView(textView);
         }
     }
@@ -286,7 +286,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings1),row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings1),row,col)[i]);
             linearLayout1.addView(textView);
         }
         linearLayout.addView(linearLayout1);
@@ -315,7 +315,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings2),row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings2),row,col)[i]);
             linearLayout2.addView(textView);
         }
         linearLayout.addView(linearLayout2);
@@ -350,7 +350,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings1),row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings1),row,col)[i]);
             linearLayout1.addView(textView);
         }
         linearLayout.addView(linearLayout1);
@@ -379,7 +379,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings2),row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings2),row,col)[i]);
             linearLayout2.addView(textView);
         }
         linearLayout.addView(linearLayout2);
@@ -407,7 +407,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings3),row,col)[i]);
+            textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings3),row,col)[i]);
             linearLayout3.addView(textView);
         }
         linearLayout.addView(linearLayout3);

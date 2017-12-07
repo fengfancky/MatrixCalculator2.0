@@ -182,13 +182,13 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                         Toast.makeText(AddAndSubOperationActivity.this, "第一个矩阵列数不等于第二个矩阵的行数", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    showLastMatrix(last_matrix_layout,FormatString.muls(matrix1,matrix2,oneRowNum,twoRowNum),oneRowNum,twoColNum);
+                    showLastMatrix(last_matrix_layout,FormatString.newInstance(this).muls(matrix1,matrix2,oneRowNum,twoRowNum),oneRowNum,twoColNum);
                     showLast();
 
                     history_type=OperationType.TIME;
                     arg1=matrix1+","+oneRowNum+","+oneColNum;
                     arg2=matrix2+","+twoRowNum+","+twoColNum;
-                    historyResult=FormatString.muls(matrix1,matrix2,oneRowNum,twoRowNum)+","+oneRowNum+","+twoColNum;
+                    historyResult=FormatString.newInstance(this).muls(matrix1,matrix2,oneRowNum,twoRowNum)+","+oneRowNum+","+twoColNum;
                     myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
                 }else {
                     if(isClose){
@@ -209,23 +209,23 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
 
 
                         if (type.equals(ADD)){
-                            showLastMatrix(last_matrix_layout,FormatString.add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
+                            showLastMatrix(last_matrix_layout,FormatString.newInstance(this).add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
                             showLast();
 
                             history_type="矩阵加法";
                             arg1=matrix1+","+oneRowNum+","+oneColNum;
                             arg2=matrix2+","+twoRowNum+","+twoColNum;
-                            historyResult=FormatString.add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString()))+","+oneRowNum+","+oneColNum;
+                            historyResult=FormatString.newInstance(this).add(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString()))+","+oneRowNum+","+oneColNum;
                             myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
 
                         }else if (type.equals(SUB)){
-                            showLastMatrix(last_matrix_layout,FormatString.sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
+                            showLastMatrix(last_matrix_layout,FormatString.newInstance(this).sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString())),oneRowNum,oneColNum);
                             showLast();
 
                             history_type="矩阵减法";
                             arg1=matrix1+","+oneRowNum+","+oneColNum;
                             arg2=matrix2+","+twoRowNum+","+twoColNum;
-                            historyResult=FormatString.sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString()))+","+oneRowNum+","+oneColNum;
+                            historyResult=FormatString.newInstance(this).sub(matrix1,matrix2,Integer.parseInt(editRowNum.getText().toString()))+","+oneRowNum+","+oneColNum;
                             myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
                         }else {
                         }
@@ -261,9 +261,9 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                     return;
                 }
 
-                if(FormatString.isCorrectMatrix(editMatrix.getText().toString(),Integer.parseInt(editRowNum.getText().toString()),Integer.parseInt(editColNum.getText().toString()))){
+                if(FormatString.newInstance(this).isCorrectMatrix(editMatrix.getText().toString(),Integer.parseInt(editRowNum.getText().toString()),Integer.parseInt(editColNum.getText().toString()))){
                     if (flag==0){
-                        matrix1=FormatString.formatString(editMatrix.getText().toString());
+                        matrix1=FormatString.newInstance(this).formatString(editMatrix.getText().toString());
                         oneRowNum=Integer.parseInt(editRowNum.getText().toString());
                         oneColNum=Integer.parseInt(editColNum.getText().toString());
 
@@ -271,7 +271,7 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
                         resultAnim(matrixResult);
                         flag=1;
                     }else if (flag==1){
-                        matrix2=FormatString.formatString(editMatrix.getText().toString());
+                        matrix2=FormatString.newInstance(this).formatString(editMatrix.getText().toString());
                         twoRowNum=Integer.parseInt(editRowNum.getText().toString());
                         twoColNum=Integer.parseInt(editColNum.getText().toString());
 
@@ -295,7 +295,7 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
             textView.setPadding(5,5,5,5);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(matrix,row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(matrix,row,col)[i]);
             view.addView(textView);
         }
     }
@@ -309,7 +309,7 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(matrix),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(matrix),row,col)[i]);
             view.addView(textView);
         }
     }

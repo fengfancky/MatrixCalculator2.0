@@ -16,6 +16,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,12 +25,14 @@ import android.widget.Toast;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.conf.OperationType;
+import com.math.cky.matrixcalculator.conf.Settings;
 import com.math.cky.matrixcalculator.fragment.BasicOperationFragment;
 import com.math.cky.matrixcalculator.fragment.DeterminantFragment;
 import com.math.cky.matrixcalculator.fragment.MatrixDefineFragment;
 import com.math.cky.matrixcalculator.fragment.MatrixHistoryFragment;
 import com.math.cky.matrixcalculator.fragment.MulFragment;
 import com.math.cky.matrixcalculator.fragment.RankFragment;
+import com.math.cky.matrixcalculator.utils.Preference;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,6 +80,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
+
+        initSettings();
+    }
+
+    //初始化设置
+    private void initSettings(){
+        if (TextUtils.isEmpty(Preference.newInstance(this).getString(Settings.FORMAT))){
+            Preference.newInstance(this).put(Settings.FORMAT,Settings.NORMAL);
+        }
+
     }
 
     private void setupViewPager(ViewPager viewPager) {

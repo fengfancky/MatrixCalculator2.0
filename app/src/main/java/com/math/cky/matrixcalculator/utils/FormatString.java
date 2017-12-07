@@ -1,8 +1,11 @@
 package com.math.cky.matrixcalculator.utils;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.util.Log;
 
+
+import com.math.cky.matrixcalculator.conf.Settings;
 
 import java.text.DecimalFormat;
 
@@ -17,12 +20,35 @@ public class FormatString {
 
     private static final String TAG = "FormatString";
 
+
+
+    private static FormatString formatString;
+    private Context context;
+    DecimalFormat decimalFormat;
+
+    public static FormatString newInstance(Context context) {
+        if (formatString == null) {
+            synchronized (Preference.class){
+                if(formatString==null){
+                    formatString = new FormatString(context);
+                }
+            }
+        }
+        return formatString;
+    }
+
+    private FormatString (Context context){
+        this.context=context;
+        decimalFormat=new DecimalFormat(Preference.newInstance(context).getString(Settings.FORMAT));
+    }
+
+
     /**
      * 将字符串中的其他字符替换成空格
      * @param str
      * @return
      */
-    public static String formatString(String str){
+    public  String formatString(String str){
         String string ="";
         string=str.trim().replaceAll("[\\t\\n\\r]", " ");
         string=string.replaceAll(" +"," ");
@@ -37,7 +63,7 @@ public class FormatString {
      * @param col
      * @return
      */
-    public static boolean isCorrectMatrix(String string,int row,int col){
+    public  boolean isCorrectMatrix(String string,int row,int col){
         if (formatString(string.trim()).split(" ").length==(row*col)){
             return true;
         }
@@ -51,7 +77,7 @@ public class FormatString {
      * @param colNum
      * @return
      */
-    public static String addLineFeed(String string,int row,int colNum){
+    public  String addLineFeed(String string,int row,int colNum){
         StringBuffer result=new StringBuffer();
         String[] strings=string.trim().split(" ");
         for (int i=0;i<strings.length;i++){
@@ -70,7 +96,7 @@ public class FormatString {
      * @param string
      * @return
      */
-    public static String cutStartBlank(String string){
+    public  String cutStartBlank(String string){
         if (string.startsWith(" ")){
             string=string.substring(1);
             return cutStartBlank(string);
@@ -84,7 +110,7 @@ public class FormatString {
      * @param str
      * @return
      */
-    public static double[] getDoubleByString(String str){
+    public  double[] getDoubleByString(String str){
 
         String[] array=str.split(" ");
         double[] doubles=new double[array.length];
@@ -102,7 +128,7 @@ public class FormatString {
      * @param str
      * @return
      */
-    public static String[] getStringArrayByString(String str,int row,int col){
+    public  String[] getStringArrayByString(String str,int row,int col){
         String[] result=new String[col];
         String[] array=str.trim().split(" ");
         for (int j=0;j<result.length;j++){
@@ -133,7 +159,7 @@ public class FormatString {
      * @param num
      * @return
      */
-    public static double[][] getDoubleByDouble(double[] doubles,int num){
+    public  double[][] getDoubleByDouble(double[] doubles,int num){
         double[][] doublesMatrix=new double[num][doubles.length/num];
         for ( int i=0;i<doubles.length;i++){
             doublesMatrix[i/(doubles.length/num)][i%(doubles.length/num)]=doubles[i];
@@ -144,14 +170,14 @@ public class FormatString {
     /**
      *   矩阵加法
      */
-    public static Matrix plus(double[][] matrix1,double[][] matrix2){
+    public  Matrix plus(double[][] matrix1,double[][] matrix2){
         Matrix matrix;
         Matrix matrix_plus1=new Matrix(matrix1);
         Matrix matrix_plus2=new Matrix(matrix2);
         matrix=matrix_plus1.plus(matrix_plus2);
         return matrix;
     }
-    public static String add(String string1,String string2,int rowNum){
+    public  String add(String string1,String string2,int rowNum){
         double[][]  double1=getDoubleByDouble(getDoubleByString(string1),rowNum);
         double[][]  double2=getDoubleByDouble(getDoubleByString(string2),rowNum);
         return getLastResult(plus(double1,double2));
@@ -163,7 +189,7 @@ public class FormatString {
      * @param matrix2
      * @return
      */
-    public static Matrix minus(double[][] matrix1,double[][] matrix2){
+    public  Matrix minus(double[][] matrix1,double[][] matrix2){
         Matrix matrix;
         Matrix matrix_minus1=new Matrix(matrix1);
         Matrix matrix_minus2=new Matrix(matrix2);
@@ -171,7 +197,7 @@ public class FormatString {
         return matrix;
     }
 
-    public static String sub(String string1,String string2,int rowNum){
+    public  String sub(String string1,String string2,int rowNum){
         double[][]  double1=getDoubleByDouble(getDoubleByString(string1),rowNum);
         double[][]  double2=getDoubleByDouble(getDoubleByString(string2),rowNum);
         return getLastResult(minus(double1,double2));
@@ -180,7 +206,7 @@ public class FormatString {
     /**
      * 矩阵乘法
      */
-    public static Matrix times(double[][] matrix1,double[][] matrix2){
+    public  Matrix times(double[][] matrix1,double[][] matrix2){
         Matrix matrix;
         Matrix matrix_time1=new Matrix(matrix1);
         Matrix matrix_time2=new Matrix(matrix2);
@@ -188,7 +214,7 @@ public class FormatString {
         return matrix;
     }
 
-    public static String muls(String string1,String string2,int rowNum1,int rowNum2){
+    public  String muls(String string1,String string2,int rowNum1,int rowNum2){
         double[][]  double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         double[][]  double2=getDoubleByDouble(getDoubleByString(string2),rowNum2);
         return getLastResult(times(double1,double2));
@@ -201,14 +227,14 @@ public class FormatString {
      * @param value
      * @return
      */
-    public static Matrix timesEquals(double[][] matrix1,double value){
+    public  Matrix timesEquals(double[][] matrix1,double value){
         Matrix matrix;
         Matrix matrix_timesEquals1=new Matrix(matrix1);
         matrix=matrix_timesEquals1.timesEquals(value);
         return matrix;
     }
 
-    public static String numTimes(String string1,int rowNum1,double value){
+    public  String numTimes(String string1,int rowNum1,double value){
         double[][]  double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         return getLastResult(timesEquals(double1,value));
     }
@@ -216,18 +242,18 @@ public class FormatString {
     /**
      * 行列式
      */
-    public static String det(String string1,int rowNum1){
+    public  String det(String string1,int rowNum1){
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix_det1=new Matrix(double1);
-        return matrix_det1.det()+"";
+        String str=decimalFormat.format(matrix_det1.det());
+        return str+"";
     }
 
     /**
      * 特征值与特征向量
      */
-    public static String[] values(String string1,int rowNum1){
+    public  String[] values(String string1,int rowNum1){
 
-        DecimalFormat df1 = new DecimalFormat("#E0");
         String[] result=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix_det1=new Matrix(double1);
@@ -240,14 +266,14 @@ public class FormatString {
         StringBuffer eigenvalues=new StringBuffer("特征值：\n");
 
         for (int i=0;i<matrixReal.length;i++){
-            String realStr=matrixReal[i]+"";
+            String realStr=decimalFormat.format(matrixReal[i])+"";
             String imgStr="";
             if (matrixImg[i]==0.0){
                  imgStr="";
             }else if (matrixImg[i]>0){
-                 imgStr="+"+matrixImg[i]+"i";
+                 imgStr="+"+decimalFormat.format(matrixReal[i])+"i";
             }else {
-                 imgStr=matrixImg[i]+"i";
+                 imgStr=decimalFormat.format(matrixReal[i])+"i";
             }
             eigenvalues.append(realStr+imgStr);
             if (i==matrixReal.length-1){
@@ -266,9 +292,9 @@ public class FormatString {
             StringBuffer vector=new StringBuffer("向量"+(j+1)+":\n ");
             for (int k=0;k<matrixStr.length;k++){
                 if (k==matrixStr.length-1){
-                    vector.append(matrixStr[k][j]+"  ");
+                    vector.append(decimalFormat.format(matrixStr[k][j])+"  ");
                 }else {
-                    vector.append(matrixStr[k][j]+",  ");
+                    vector.append(decimalFormat.format(matrixStr[k][j])+",  ");
                 }
             }
             eigenvector.append(vector);
@@ -281,7 +307,7 @@ public class FormatString {
     /**
      * 求矩阵的秩
      */
-    public static int rank(String string1,int rowNum1){
+    public  int rank(String string1,int rowNum1){
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix=new Matrix(double1);
         return matrix.rank();
@@ -293,7 +319,7 @@ public class FormatString {
      * @param rowNum1
      * @return
      */
-    public static String inverse(String string1,int rowNum1){
+    public  String inverse(String string1,int rowNum1){
         String result="";
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix=new Matrix(double1);
@@ -311,7 +337,7 @@ public class FormatString {
      * @param rowNum1
      * @return
      */
-    public static String[] luDecomposition(String string1,int rowNum1){
+    public  String[] luDecomposition(String string1,int rowNum1){
         String[] results=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix=new Matrix(double1);
@@ -346,7 +372,7 @@ public class FormatString {
      * @param rowNum1
      * @return
      */
-    public static String[] qrDecomposition(String string1,int rowNum1){
+    public  String[] qrDecomposition(String string1,int rowNum1){
         String[] results=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix=new Matrix(double1);
@@ -368,7 +394,7 @@ public class FormatString {
         return results;
     }
 
-    public static String[] svdDecomposition(String string1,int rowNum1){
+    public  String[] svdDecomposition(String string1,int rowNum1){
 
         String[] results=new String[3];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
@@ -403,13 +429,14 @@ public class FormatString {
      * @param matrix
      * @return
      */
-    public static String[][] getStringMatrix(Matrix matrix) {
+    public  String[][] getStringMatrix(Matrix matrix) {
 
         double[][] doubles=matrix.getArray();
         String[][] strMatrix=new String[doubles.length][doubles[0].length];
         for (int i=0;i<doubles.length;i++){
             for (int j=0;j<doubles[0].length;j++){
-                strMatrix[i][j]=doubles[i][j]+"";
+                String str=decimalFormat.format(doubles[i][j]);
+                strMatrix[i][j]=str+"";
             }
         }
         return strMatrix;
@@ -421,7 +448,7 @@ public class FormatString {
      * @param matrix
      * @return
      */
-    public static String printMatrix(String[][] matrix){
+    public  String printMatrix(String[][] matrix){
         String str="";
         for (int i=0;i<matrix.length;i++){
             for (int j=0;j<matrix[0].length;j++){
@@ -437,7 +464,7 @@ public class FormatString {
      * 输出矩阵用于文本显示
      * @return
      */
-    public static String getLastResult(Matrix matrix){
+    public  String getLastResult(Matrix matrix){
         return printMatrix(getStringMatrix(matrix)).trim();
     }
 

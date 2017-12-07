@@ -161,21 +161,21 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
 
                 if (title.equals(OperationType.NUM_TIME)){
                     //数乘
-                    showLastMatrix(FormatString.numTimes(matrix,oneRowNum,Double.parseDouble(num.getText().toString())),oneRowNum,oneColNum);
+                    showLastMatrix(FormatString.newInstance(this).numTimes(matrix,oneRowNum,Double.parseDouble(num.getText().toString())),oneRowNum,oneColNum);
 
                     history_type=OperationType.NUM_TIME;
                     arg1=matrix+","+oneRowNum+","+oneColNum;
                     arg2=Double.parseDouble(num.getText().toString())+"";
-                    historyResult=FormatString.numTimes(matrix,oneRowNum,Double.parseDouble(num.getText().toString()))+","+oneRowNum+","+oneColNum;
+                    historyResult=FormatString.newInstance(this).numTimes(matrix,oneRowNum,Double.parseDouble(num.getText().toString()))+","+oneRowNum+","+oneColNum;
 
                 }else if(title.equals(OperationType.DEL)){
                     //行列式
                     if (oneRowNum==oneColNum){
-                        oneLastValue(FormatString.det(matrix,oneRowNum));
+                        oneLastValue(FormatString.newInstance(this).det(matrix,oneRowNum));
                         history_type=OperationType.DEL;
                         arg1=matrix+","+oneRowNum+","+oneColNum;
                         arg2="00";
-                        historyResult=FormatString.det(matrix,oneRowNum);
+                        historyResult=FormatString.newInstance(this).det(matrix,oneRowNum);
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
                     }
@@ -183,7 +183,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                 }else if(title.equals(OperationType.EIGEN_VALUES)){
                     //特征值与特征向量
                     if (oneRowNum==oneColNum){
-                        String[] result=FormatString.values(matrix,oneRowNum);
+                        String[] result=FormatString.newInstance(this).values(matrix,oneRowNum);
                         oneLastValue(result[0]+"\n"+result[1]);
 
                         history_type=OperationType.EIGEN_VALUES;
@@ -197,22 +197,22 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
 
                 }else if(title.equals(OperationType.RANK)){
                     //秩
-                    oneLastValue(FormatString.rank(matrix,oneRowNum)+"");
+                    oneLastValue(FormatString.newInstance(this).rank(matrix,oneRowNum)+"");
 
                     history_type=OperationType.RANK;
                     arg1=matrix+","+oneRowNum+","+oneColNum;
                     arg2="00";
-                    historyResult=FormatString.rank(matrix,oneRowNum)+"";
+                    historyResult=FormatString.newInstance(this).rank(matrix,oneRowNum)+"";
 
                 }else if (title.equals(OperationType.INVERSE)){
                     //逆
                     if (oneRowNum==oneColNum){
-                        showLastMatrix(FormatString.inverse(matrix,oneRowNum),oneRowNum,oneColNum);
+                        showLastMatrix(FormatString.newInstance(this).inverse(matrix,oneRowNum),oneRowNum,oneColNum);
 
                         history_type=OperationType.INVERSE;
                         arg1=matrix+","+oneRowNum+","+oneColNum;
                         arg2="00";
-                        historyResult=FormatString.inverse(matrix,oneRowNum)+"";
+                        historyResult=FormatString.newInstance(this).inverse(matrix,oneRowNum)+"";
 
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
@@ -222,12 +222,12 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                 }else if (title.equals(OperationType.LUDECOMPOSITION)){
                     //三角分解
                     if(oneRowNum==oneColNum){
-                        showDecompositionMatrix("L矩阵：","U矩阵：",FormatString.luDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+                        showDecompositionMatrix("L矩阵：","U矩阵：",FormatString.newInstance(this).luDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
 
                         history_type=OperationType.LUDECOMPOSITION;
                         arg1=matrix+","+oneRowNum+","+oneColNum;
                         arg2="00";
-                        historyResult=FormatString.luDecomposition(matrix,oneRowNum)[0]+","+FormatString.luDecomposition(matrix,oneRowNum)[1]+","+oneRowNum+","+oneColNum;
+                        historyResult=FormatString.newInstance(this).luDecomposition(matrix,oneRowNum)[0]+","+FormatString.newInstance(this).luDecomposition(matrix,oneRowNum)[1]+","+oneRowNum+","+oneColNum;
                     }else {
                         Toast.makeText(this, "请输入方阵", Toast.LENGTH_SHORT).show();
                         return;
@@ -235,20 +235,20 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
 
                 }else if (title.equals(OperationType.QRDECOMPOSITION)){
                     //QR分解
-                    showDecompositionMatrix("Q矩阵：","R矩阵：",FormatString.qrDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+                    showDecompositionMatrix("Q矩阵：","R矩阵：",FormatString.newInstance(this).qrDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
 
                     history_type=OperationType.QRDECOMPOSITION;
                     arg1=matrix+","+oneRowNum+","+oneColNum;
                     arg2="00";
-                    historyResult=FormatString.qrDecomposition(matrix,oneRowNum)[0]+","+FormatString.qrDecomposition(matrix,oneRowNum)[1]+","+oneRowNum+","+oneColNum;
+                    historyResult=FormatString.newInstance(this).qrDecomposition(matrix,oneRowNum)[0]+","+FormatString.newInstance(this).qrDecomposition(matrix,oneRowNum)[1]+","+oneRowNum+","+oneColNum;
                 }else if (title.equals(OperationType.SDECOMPOSITION)){
                     //SVD分解
-                    sDecomposittion(FormatString.svdDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
+                    sDecomposittion(FormatString.newInstance(this).svdDecomposition(matrix,oneRowNum),oneRowNum,oneColNum);
 
                     history_type=OperationType.SDECOMPOSITION;
                     arg1=matrix+","+oneRowNum+","+oneColNum;
                     arg2="00";
-                    historyResult=FormatString.svdDecomposition(matrix,oneRowNum)[0]+","+FormatString.svdDecomposition(matrix,oneRowNum)[1]+","+FormatString.svdDecomposition(matrix,oneRowNum)[2]+","+oneRowNum+","+oneColNum;
+                    historyResult=FormatString.newInstance(this).svdDecomposition(matrix,oneRowNum)[0]+","+FormatString.newInstance(this).svdDecomposition(matrix,oneRowNum)[1]+","+FormatString.newInstance(this).svdDecomposition(matrix,oneRowNum)[2]+","+oneRowNum+","+oneColNum;
                 }
                 showLast();
                 myDataHelper.insert(history_type, time, arg1, arg2,historyResult);
@@ -286,8 +286,8 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
                     return;
                 }
 
-                if (FormatString.isCorrectMatrix(editMatrix.getText().toString(), Integer.parseInt(editRowNum.getText().toString()), Integer.parseInt(editColNum.getText().toString()))) {
-                    matrix = FormatString.formatString(editMatrix.getText().toString());
+                if (FormatString.newInstance(this).isCorrectMatrix(editMatrix.getText().toString(), Integer.parseInt(editRowNum.getText().toString()), Integer.parseInt(editColNum.getText().toString()))) {
+                    matrix = FormatString.newInstance(this).formatString(editMatrix.getText().toString());
                     oneRowNum = Integer.parseInt(editRowNum.getText().toString());
                     oneColNum = Integer.parseInt(editColNum.getText().toString());
 
@@ -319,7 +319,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(matrix,row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(matrix,row,col)[i]);
             resultLayout.addView(textView);
         }
     }
@@ -351,7 +351,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[0]),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(strings[0]),row,col)[i]);
             linearLayout1.addView(textView);
         }
         linearLayout.addView(linearLayout1);
@@ -380,7 +380,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[1]),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(strings[1]),row,col)[i]);
             linearLayout2.addView(textView);
         }
         linearLayout.addView(linearLayout2);
@@ -415,7 +415,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[0]),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(strings[0]),row,col)[i]);
             linearLayout1.addView(textView);
         }
         linearLayout.addView(linearLayout1);
@@ -444,7 +444,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[1]),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(strings[1]),row,col)[i]);
             linearLayout2.addView(textView);
         }
         linearLayout.addView(linearLayout2);
@@ -472,7 +472,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(strings[2]),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(strings[2]),row,col)[i]);
             linearLayout3.addView(textView);
         }
         linearLayout.addView(linearLayout3);
@@ -496,7 +496,7 @@ public class SingleOperationActivity extends AppCompatActivity implements View.O
             textView.setPadding(10,10,10,10);
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
-            textView.setText(FormatString.getStringArrayByString(FormatString.formatString(matrix),row,col)[i]);
+            textView.setText(FormatString.newInstance(this).getStringArrayByString(FormatString.newInstance(this).formatString(matrix),row,col)[i]);
             lastMatrixLayout.addView(textView);
         }
     }
