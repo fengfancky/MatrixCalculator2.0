@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF333333</color>
+    <color name="colorPrimaryDark">#FF222222</color>
+    <color name="colorAccent">#FFEEEEEE</color>
+
+    <color name="grayAAAAAA">#EEEEEE</color>
+    <color name="grayCCCCCC">#CCCCCC</color>
+    <color name="grayEEEEEE">#EEEEEE</color>
+    <color name="grayE1E1E1">#E1E1E1</color>
+    <color name="tran">#00000000</color>
+    <color name="tran_white">#88888888</color>
+    <color name="tran_white1">#CCFFFFFF</color>
+    <color name="black">#333333</color>
+    <color name="yellowFF9224">#FF9224</color>
+    <color name="green73B534">#73B534</color>
+    <color name="redDE5347">#DE5347</color>
+    <color name="white">#FFFFFF</color>
+    <color name="green">#3CAF35</color>
+
+    <color name="setting_bg">#FF222222</color>
+    <color name="card_bg">#FF333333</color>
+    <color name="textcolor">#FFFFFFFF</color>
+    <color name="tip_color">#FFEEEEEE</color>
+    <color name="line_color">#88AAAAAA</color>
+
+    <color name="centerColor">#FF333333</color>
+    <color name="endColor">#FF444444</color>
+    <color name="startColor">#FF222222</color>
+    <color name="historyColor">#FF333333</color>
+</resources>

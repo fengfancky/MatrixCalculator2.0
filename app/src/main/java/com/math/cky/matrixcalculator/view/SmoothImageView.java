@@ -38,7 +38,7 @@ public class SmoothImageView extends ImageView {
 	private Bitmap mBitmap;
 	private boolean mTransformStart = false;
 	private Transfrom mTransfrom;
-	private final int mBgColor = 0xFF333333;
+	private final int mBgColor = 0xFFDDDDDD;
 	private int mBgAlpha = 0;
 	private Paint mPaint;
 	

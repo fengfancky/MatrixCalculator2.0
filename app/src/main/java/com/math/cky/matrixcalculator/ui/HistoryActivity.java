@@ -5,10 +5,12 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,9 +20,11 @@ import android.widget.Toast;
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.adapter.HistoryReclcyerAdapter;
 import com.math.cky.matrixcalculator.callback.SimpleItemTouchHelperCallback2;
+import com.math.cky.matrixcalculator.conf.Settings;
 import com.math.cky.matrixcalculator.database.MatrixHistoryBean;
 import com.math.cky.matrixcalculator.database.MyDataHelper;
 import com.math.cky.matrixcalculator.database.MyDatebase;
+import com.math.cky.matrixcalculator.utils.Preference;
 
 import java.util.ArrayList;
 
@@ -47,6 +51,14 @@ public class HistoryActivity extends AppCompatActivity {
         historyEmpty= (TextView) findViewById(R.id.history_empty);
         initData();
         initRecycler();
+
+        if (!TextUtils.isEmpty(Preference.newInstance(this).getString(Settings.DAY_NIGHT_MODE))){
+            if (Preference.newInstance(this).getString(Settings.DAY_NIGHT_MODE).equals(Settings.NIGHT_MODE)){
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }else {
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        }
     }
 
     private void initToolbar(){

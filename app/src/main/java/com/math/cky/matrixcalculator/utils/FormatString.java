@@ -1,9 +1,7 @@
 package com.math.cky.matrixcalculator.utils;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.util.Log;
-
 
 import com.math.cky.matrixcalculator.conf.Settings;
 
@@ -21,10 +19,9 @@ public class FormatString {
     private static final String TAG = "FormatString";
 
 
-
     private static FormatString formatString;
     private Context context;
-    DecimalFormat decimalFormat;
+
 
     public static FormatString newInstance(Context context) {
         if (formatString == null) {
@@ -39,7 +36,6 @@ public class FormatString {
 
     private FormatString (Context context){
         this.context=context;
-        decimalFormat=new DecimalFormat(Preference.newInstance(context).getString(Settings.FORMAT));
     }
 
 
@@ -243,9 +239,16 @@ public class FormatString {
      * 行列式
      */
     public  String det(String string1,int rowNum1){
+        DecimalFormat decimalFormat=new DecimalFormat(Preference.newInstance(context).getString(Settings.FORMAT));
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix_det1=new Matrix(double1);
-        String str=decimalFormat.format(matrix_det1.det());
+        String str="";
+        if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+            str=matrix_det1.det()+"";
+        }else {
+            str=decimalFormat.format(matrix_det1.det());
+        }
+
         return str+"";
     }
 
@@ -253,7 +256,7 @@ public class FormatString {
      * 特征值与特征向量
      */
     public  String[] values(String string1,int rowNum1){
-
+        DecimalFormat decimalFormat=new DecimalFormat(Preference.newInstance(context).getString(Settings.FORMAT));
         String[] result=new String[2];
         double[][] double1=getDoubleByDouble(getDoubleByString(string1),rowNum1);
         Matrix matrix_det1=new Matrix(double1);
@@ -266,14 +269,29 @@ public class FormatString {
         StringBuffer eigenvalues=new StringBuffer("特征值：\n");
 
         for (int i=0;i<matrixReal.length;i++){
-            String realStr=decimalFormat.format(matrixReal[i])+"";
+            String realStr="";
+            if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+                realStr=matrixReal[i]+"";
+            }else {
+                realStr=decimalFormat.format(matrixReal[i])+"";
+            }
+
             String imgStr="";
             if (matrixImg[i]==0.0){
                  imgStr="";
             }else if (matrixImg[i]>0){
-                 imgStr="+"+decimalFormat.format(matrixReal[i])+"i";
+                if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+                    imgStr=matrixImg[i]+"";
+                }else {
+                    imgStr="+"+decimalFormat.format(matrixImg[i])+"i";
+                }
+
             }else {
-                 imgStr=decimalFormat.format(matrixReal[i])+"i";
+                if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+                    imgStr=matrixImg[i]+"";
+                }else {
+                    imgStr="+"+decimalFormat.format(matrixImg[i])+"i";
+                }
             }
             eigenvalues.append(realStr+imgStr);
             if (i==matrixReal.length-1){
@@ -292,9 +310,19 @@ public class FormatString {
             StringBuffer vector=new StringBuffer("向量"+(j+1)+":\n ");
             for (int k=0;k<matrixStr.length;k++){
                 if (k==matrixStr.length-1){
-                    vector.append(decimalFormat.format(matrixStr[k][j])+"  ");
+                    if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+                        vector.append(matrixStr[k][j]+"  ");
+                    }else {
+                        vector.append(decimalFormat.format(matrixStr[k][j])+"  ");
+                    }
+
+
                 }else {
-                    vector.append(decimalFormat.format(matrixStr[k][j])+",  ");
+                    if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+                        vector.append(matrixStr[k][j]+",  ");
+                    }else {
+                        vector.append(decimalFormat.format(matrixStr[k][j])+",  ");
+                    }
                 }
             }
             eigenvector.append(vector);
@@ -430,12 +458,19 @@ public class FormatString {
      * @return
      */
     public  String[][] getStringMatrix(Matrix matrix) {
-
+        DecimalFormat decimalFormat=new DecimalFormat(Preference.newInstance(context).getString(Settings.FORMAT));
         double[][] doubles=matrix.getArray();
         String[][] strMatrix=new String[doubles.length][doubles[0].length];
         for (int i=0;i<doubles.length;i++){
             for (int j=0;j<doubles[0].length;j++){
-                String str=decimalFormat.format(doubles[i][j]);
+                String str="";
+
+                if (Preference.newInstance(context).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
+                    str=doubles[i][j]+"";
+                }else {
+                    str=decimalFormat.format(doubles[i][j]);
+                }
+
                 strMatrix[i][j]=str+"";
             }
         }

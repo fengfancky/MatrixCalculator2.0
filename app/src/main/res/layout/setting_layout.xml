@@ -32,8 +32,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <LinearLayout
+                android:id="@+id/setting_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/setting_bg"
                 android:orientation="vertical"
                 android:paddingBottom="20dp">
                 <TextView
@@ -44,98 +46,116 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/tip_color"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <LinearLayout
+                    <FrameLayout
+                        android:id="@+id/format1"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp">
-                        <TextView
-                            android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="小数点后三位有效数字"
-                            android:textSize="16sp"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp"
-                            android:layout_gravity="center_vertical|left"/>
-                        <CheckBox
-                            android:id="@+id/checkbox1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|right"/>
-                    </LinearLayout>
+                            android:orientation="horizontal"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:background="@drawable/ripple_bg"
+                            android:clickable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="小数点后三位有效数字"
+                                android:textSize="16sp"
+                                android:paddingTop="15dp"
+                                android:paddingBottom="15dp"
+                                android:layout_gravity="center_vertical|left"/>
+                            <CheckBox
+                                android:id="@+id/checkbox1"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|right"/>
+                        </LinearLayout>
+                    </FrameLayout>
+
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grayEEEEEE"
+                        android:background="@color/line_color"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp"/>
 
+                    <FrameLayout
+                        android:id="@+id/format2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:background="@drawable/ripple_bg"
+                            android:clickable="true">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="科学计数法"
+                                android:textSize="16sp"
+                                android:paddingTop="15dp"
+                                android:paddingBottom="15dp"
+                                android:layout_gravity="center_vertical|left"/>
+                            <CheckBox
+                                android:id="@+id/checkbox2"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center_vertical|right"/>
+                        </LinearLayout>
+                    </FrameLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1px"
+                        android:background="@color/line_color"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginRight="20dp" />
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:paddingLeft="20dp"
-                        android:paddingRight="20dp">
+                        android:paddingRight="20dp"
+                        android:background="@drawable/ripple_bg"
+                        android:clickable="true">
+
                         <TextView
+                            android:id="@+id/format_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="科学计数法"
+                            android:text="关闭格式"
                             android:textSize="16sp"
                             android:paddingTop="15dp"
                             android:paddingBottom="15dp"
                             android:layout_gravity="center_vertical|left"/>
-                        <CheckBox
-                            android:id="@+id/checkbox2"
+
+                        <Switch
+                            android:id="@+id/format_switch"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical|right"/>
+                            android:layout_gravity="center_vertical|left"/>
+
                     </LinearLayout>
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1px"
-                        android:background="@color/grayEEEEEE"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp" />
-
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/grayEEEEEE"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginRight="20dp" />
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="自定义格式"
-                            android:textSize="16sp"
-                            android:paddingTop="15dp"
-                            android:paddingBottom="15dp"
-                            android:layout_gravity="center_vertical|left"/>
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1px"
-                        android:background="@color/grayEEEEEE"
+                        android:background="@color/line_color"
                         android:layout_marginLeft="20dp"
                         android:layout_marginRight="20dp" />
 
@@ -149,14 +169,16 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/tip_color"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
+                    android:paddingRight="20dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -168,6 +190,7 @@
                         android:layout_gravity="center_vertical|left"/>
 
                     <Switch
+                        android:id="@+id/day_night_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical" />
@@ -176,7 +199,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/grayEEEEEE"
+                    android:background="@color/line_color"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
 
@@ -185,7 +208,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingLeft="20dp"
-                    android:paddingRight="20dp">
+                    android:paddingRight="20dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -200,7 +225,7 @@
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/grayEEEEEE"
+                    android:background="@color/line_color"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
 
@@ -212,7 +237,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginBottom="10dp"
                     android:textStyle="bold"
-                    android:textColor="@color/colorPrimary"/>
+                    android:textColor="@color/tip_color"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -223,12 +248,14 @@
                     android:paddingBottom="15dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:layout_gravity="center_vertical|left"/>
+                    android:layout_gravity="center_vertical|left"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true"/>
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1px"
-                    android:background="@color/grayEEEEEE"
+                    android:background="@color/line_color"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp" />
 
@@ -241,14 +268,9 @@
                     android:paddingBottom="15dp"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:layout_gravity="center_vertical|left"/>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1px"
-                    android:background="@color/grayEEEEEE"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp" />
+                    android:layout_gravity="center_vertical|left"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true"/>
 
             </LinearLayout>
         </ScrollView>

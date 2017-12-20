@@ -8,14 +8,14 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff"
         android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="60dp">
+            android:paddingBottom="60dp"
+            android:background="@color/setting_bg">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/matrix_operation_cardview1"
@@ -28,17 +28,20 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="描述"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
@@ -46,7 +49,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_operation_des"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
 
                 </LinearLayout>
 
@@ -59,21 +63,23 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:background="#fff"
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="加法"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
@@ -81,7 +87,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_operation_add1"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
 
                     <ImageView
                         android:id="@+id/add_img"
@@ -106,17 +113,20 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="减法"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <ImageView
@@ -140,17 +150,20 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="数乘"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <ImageView
@@ -165,7 +178,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_mul"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
 
                     <ImageView
                         android:id="@+id/mul_other_img"
@@ -179,7 +193,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_mul2"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -190,28 +205,31 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:background="#fff"
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="转置"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_transpose"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
 
                     <ImageView
                         android:id="@+id/trans_img"
@@ -225,7 +243,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_transpose1"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/trans_other_img"
                         android:layout_width="200dp"
@@ -248,24 +267,28 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="共轭"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_conjugate"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
 
                     <ImageView
                         android:id="@+id/e_img1"
@@ -279,7 +302,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_conjugate2"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/e_img2"
                         android:layout_width="180dp"
@@ -292,7 +316,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="则"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/e_img3"
                         android:layout_width="180dp"
@@ -313,24 +338,28 @@
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/basic_layout_7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="共轭转置"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_conjugate_trans1"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
 
                     <ImageView
                         android:id="@+id/et_img1"
@@ -344,7 +373,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_conjugate_trans2"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/et_img2"
                         android:layout_width="150dp"
@@ -357,7 +387,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_conjugate_trans3"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/et_img3"
                         android:layout_width="200dp"
@@ -369,7 +400,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_conjugate_trans4"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/et_img4"
                         android:layout_width="200dp"

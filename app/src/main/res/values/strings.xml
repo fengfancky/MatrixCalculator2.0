@@ -4,6 +4,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="exit_app">再按一次退出</string>
+    <string name="back">返回</string>
+
+    <string name="errcode_success">分享成功</string>
+    <string name="errcode_cancel">分享取消</string>
+    <string name="errcode_deny">分享失败</string>
+    <string name="errcode_unknown">未知错误</string>
 
     <string name="action_settings">设置</string>
     <string name="action_history">历史</string>

@@ -27,6 +27,7 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.math.cky.matrixcalculator.R;
+import com.math.cky.matrixcalculator.utils.WeChatShare;
 
 import java.util.List;
 
@@ -41,12 +42,14 @@ public class AnimationListAdapter extends RecyclerView.Adapter<RecyclerView.View
     private int mCurrentItemId = 0;
     private List<String> timeList;
     private List<String> infoList;
+    private WeChatShare weChatShare;
 
 
-    public AnimationListAdapter(Context context,List<String> timeList,List<String> infoList) {
+    public AnimationListAdapter(Context context, List<String> timeList, List<String> infoList, WeChatShare weChatShare) {
         mContext = context;
         this.timeList=timeList;
         this.infoList=infoList;
+        this.weChatShare=weChatShare;
     }
 
     public static class SimpleViewHolder extends RecyclerView.ViewHolder {
@@ -74,16 +77,15 @@ public class AnimationListAdapter extends RecyclerView.Adapter<RecyclerView.View
         SimpleViewHolder simpleViewHolder= (SimpleViewHolder) holder;
         simpleViewHolder.info.setText(infoList.get(position));
         simpleViewHolder.title.setText(timeList.get(position));
+        simpleViewHolder.info.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                weChatShare.initAlertDialog(v);
+                return false;
+            }
+        });
     }
 
-    public void addItem(int position) {
-        final int id = mCurrentItemId++;
-        notifyItemInserted(position);
-    }
-
-    public void removeItem(int position) {
-        notifyItemRemoved(position);
-    }
 
     @Override
     public int getItemCount() {

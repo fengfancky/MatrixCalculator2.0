@@ -15,7 +15,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingBottom="60dp">
+            android:paddingBottom="60dp"
+            android:background="@color/setting_bg">
 
             <android.support.v7.widget.CardView
                 android:id="@+id/det_cardView1"
@@ -24,21 +25,23 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="24dp"
-                android:background="#fff"
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/mul_layout1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="描述"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
@@ -46,7 +49,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_mul_des"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
@@ -57,21 +61,23 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
-                android:background="#fff"
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/mul_layout2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="定义"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
 
                     <TextView
@@ -79,7 +85,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/matrix_mul_define"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/matrix_mul_img"
                         android:layout_width="300dp"
@@ -90,14 +97,15 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="如下："/>
+                        android:text="如下："
+                        android:textColor="@color/textcolor"/>
                     <ImageView
                         android:id="@+id/matrix_mul_exam_img"
                         android:layout_width="300dp"
                         android:layout_height="57dp"
                         android:layout_gravity="center_horizontal"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/matrix_mul_exam"/>
+                        android:src="@mipmap/matrix_mul_exam" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -110,28 +118,31 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
-                android:background="#fff"
                 app:cardElevation="5dp">
 
                 <LinearLayout
+                    android:id="@+id/mul_layout3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="5dp">
+                    android:padding="5dp"
+                    android:background="@drawable/ripple_bg"
+                    android:clickable="true">
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="基本性质"
-                        android:textColor="#333"
+                        android:textColor="@color/textcolor"
                         android:textSize="18sp" />
                     <ImageView
+                        android:id="@+id/mull_img"
                         android:layout_width="280dp"
                         android:layout_height="wrap_content"
                         android:scaleType="fitCenter"
                         android:layout_marginLeft="10dp"
-                        android:src="@mipmap/mulll"/>
+                        android:src="@mipmap/mulll" />
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>

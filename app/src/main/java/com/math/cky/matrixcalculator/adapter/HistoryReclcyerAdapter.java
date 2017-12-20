@@ -220,6 +220,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(matrix,row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             view.addView(textView);
         }
     }
@@ -239,6 +240,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(matrix),row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             view.addView(textView);
         }
     }
@@ -256,6 +258,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
         textView.setGravity(Gravity.LEFT);
         textView.setTextSize(18);
         textView.setText(value);
+        textView.setTextColor(context.getResources().getColor(R.color.textcolor));
         view.addView(textView);
     }
 
@@ -274,6 +277,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
         textViewL.setGravity(Gravity.LEFT);
         textViewL.setTextSize(18);
         textViewL.setText(str1);
+        textViewL.setTextColor(context.getResources().getColor(R.color.textcolor));
         linearLayout.addView(textViewL);
 
         LinearLayout linearLayout1=new LinearLayout(context);
@@ -287,6 +291,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings1),row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             linearLayout1.addView(textView);
         }
         linearLayout.addView(linearLayout1);
@@ -303,6 +308,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
         textViewU.setGravity(Gravity.LEFT);
         textViewU.setTextSize(18);
         textViewU.setText(str2);
+        textViewU.setTextColor(context.getResources().getColor(R.color.textcolor));
         linearLayout.addView(textViewU);
 
         LinearLayout linearLayout2=new LinearLayout(context);
@@ -316,6 +322,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings2),row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             linearLayout2.addView(textView);
         }
         linearLayout.addView(linearLayout2);
@@ -338,6 +345,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
         textViewS.setGravity(Gravity.LEFT);
         textViewS.setTextSize(18);
         textViewS.setText("S矩阵：");
+        textViewS.setTextColor(context.getResources().getColor(R.color.textcolor));
         linearLayout.addView(textViewS);
 
         LinearLayout linearLayout1=new LinearLayout(context);
@@ -351,6 +359,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings1),row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             linearLayout1.addView(textView);
         }
         linearLayout.addView(linearLayout1);
@@ -367,6 +376,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
         textViewV.setGravity(Gravity.LEFT);
         textViewV.setTextSize(18);
         textViewV.setText("V矩阵：");
+        textViewV.setTextColor(context.getResources().getColor(R.color.textcolor));
         linearLayout.addView(textViewV);
 
         LinearLayout linearLayout2=new LinearLayout(context);
@@ -380,6 +390,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings2),row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             linearLayout2.addView(textView);
         }
         linearLayout.addView(linearLayout2);
@@ -395,6 +406,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
         textViewU.setGravity(Gravity.LEFT);
         textViewU.setTextSize(18);
         textViewU.setText("U矩阵：");
+        textViewU.setTextColor(context.getResources().getColor(R.color.textcolor));
         linearLayout.addView(textViewU);
 
         LinearLayout linearLayout3=new LinearLayout(context);
@@ -408,6 +420,7 @@ public class HistoryReclcyerAdapter extends RecyclerView.Adapter {
             textView.setGravity(Gravity.LEFT);
             textView.setTextSize(18);
             textView.setText(FormatString.newInstance(context).getStringArrayByString(FormatString.newInstance(context).formatString(strings3),row,col)[i]);
+            textView.setTextColor(context.getResources().getColor(R.color.textcolor));
             linearLayout3.addView(textView);
         }
         linearLayout.addView(linearLayout3);

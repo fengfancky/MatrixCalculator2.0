@@ -29,4 +29,7 @@ dependencies {
     compile 'com.makeramen:roundedimageview:2.3.0'
     compile project(':library')
     compile files('libs/Jama.jar')
+    compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+    compile files('libs/open_sdk_lite.jar')
+
 }

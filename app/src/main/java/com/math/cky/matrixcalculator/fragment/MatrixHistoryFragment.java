@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.adapter.AnimationListAdapter;
+import com.math.cky.matrixcalculator.utils.WeChatShare;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,8 @@ public class MatrixHistoryFragment extends Fragment {
         View view=LayoutInflater.from(getActivity()).inflate(R.layout.matrix_history_laout,container,false);
         mRecyclerView= (RecyclerView) view.findViewById(R.id.matrix_history_list);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mAdapter = new AnimationListAdapter(getActivity(),timeList,infoList);
+        WeChatShare weChatShare=new WeChatShare(getActivity());
+        mAdapter = new AnimationListAdapter(getActivity(),timeList,infoList,weChatShare);
         ScaleInAnimatorAdapter scaleInRecyclerViewAnimationAdapter = new ScaleInAnimatorAdapter(mAdapter, mRecyclerView);
         mRecyclerView.setAdapter(scaleInRecyclerViewAnimationAdapter);
         return view;

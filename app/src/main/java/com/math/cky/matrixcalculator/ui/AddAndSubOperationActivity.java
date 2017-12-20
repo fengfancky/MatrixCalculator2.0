@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -23,9 +24,11 @@ import android.widget.Toast;
 
 import com.math.cky.matrixcalculator.R;
 import com.math.cky.matrixcalculator.conf.OperationType;
+import com.math.cky.matrixcalculator.conf.Settings;
 import com.math.cky.matrixcalculator.database.MyDataHelper;
 import com.math.cky.matrixcalculator.database.MyDatebase;
 import com.math.cky.matrixcalculator.utils.FormatString;
+import com.math.cky.matrixcalculator.utils.Preference;
 import com.math.cky.matrixcalculator.utils.Utils;
 
 /**
@@ -63,6 +66,14 @@ public class AddAndSubOperationActivity extends AppCompatActivity implements Vie
         initToobar();
         initView();
         initListener();
+
+        if (!TextUtils.isEmpty(Preference.newInstance(this).getString(Settings.DAY_NIGHT_MODE))){
+            if (Preference.newInstance(this).getString(Settings.DAY_NIGHT_MODE).equals(Settings.NIGHT_MODE)){
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }else {
+                getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        }
 
     }
 

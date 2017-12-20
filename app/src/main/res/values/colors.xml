@@ -6,10 +6,25 @@
     <color name="grayAAAAAA">#AAAAAA</color>
     <color name="grayCCCCCC">#CCCCCC</color>
     <color name="grayEEEEEE">#EEEEEE</color>
+    <color name="grayE1E1E1">#E1E1E1</color>
     <color name="tran">#00000000</color>
+    <color name="tran_white">#88FFFFFF</color>
+    <color name="tran_white1">#CCFFFFFF</color>
     <color name="black">#333333</color>
     <color name="yellowFF9224">#FF9224</color>
     <color name="green73B534">#73B534</color>
     <color name="redDE5347">#DE5347</color>
     <color name="white">#FFFFFF</color>
+    <color name="green">#3CAF35</color>
+
+    <color name="setting_bg">#FFFFFF</color>
+    <color name="card_bg">#FFFFFF</color>
+    <color name="textcolor">#444444</color>
+    <color name="tip_color">#FF11ADFF</color>
+    <color name="line_color">@color/grayEEEEEE</color>
+
+    <color name="centerColor">#11ADFF</color>
+    <color name="endColor">#009CEE</color>
+    <color name="startColor">#22BEFF</color>
+    <color name="historyColor">#FF11ADFF</color>
 </resources>

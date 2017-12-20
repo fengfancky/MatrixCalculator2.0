@@ -2,11 +2,15 @@ package com.math.cky.matrixcalculator.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView.ScaleType;
 
 import com.bumptech.glide.Glide;
+import com.math.cky.matrixcalculator.conf.Settings;
+import com.math.cky.matrixcalculator.utils.Preference;
 import com.math.cky.matrixcalculator.view.SmoothImageView;
 
 public class SpaceImageDetailActivity extends AppCompatActivity {
@@ -44,6 +48,14 @@ public class SpaceImageDetailActivity extends AppCompatActivity {
 				onBackPressed();
 			}
 		});
+
+		if (!TextUtils.isEmpty(Preference.newInstance(this).getString(Settings.DAY_NIGHT_MODE))){
+			if (Preference.newInstance(this).getString(Settings.DAY_NIGHT_MODE).equals(Settings.NIGHT_MODE)){
+				getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+			}else {
+				getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+			}
+		}
 
 	}
 

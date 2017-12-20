@@ -4,19 +4,26 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.math.cky.matrixcalculator.R;
+import com.math.cky.matrixcalculator.conf.Settings;
 import com.math.cky.matrixcalculator.ui.SpaceImageDetailActivity;
+import com.math.cky.matrixcalculator.utils.Preference;
+import com.math.cky.matrixcalculator.utils.WeChatShare;
 
 /**
  * Created by chen on 2017/6/12.
  */
-public class BasicOperationFragment extends Fragment implements View.OnClickListener{
+public class BasicOperationFragment extends Fragment implements View.OnClickListener,View.OnLongClickListener{
     private ImageView add_img,sub_img,num_mul_img,trans_img,mul_other_img,trans_other_img,e_img1,e_img2,e_img3,et_img1,et_img2,et_img3,et_img4;
+    private LinearLayout basic_layout_7,basic_layout_6,basic_layout_5,basic_layout_4,basic_layout_3,basic_layout_2,basic_layout_1;
+    private WeChatShare weChatShare;
 
     @Nullable
     @Override
@@ -36,6 +43,14 @@ public class BasicOperationFragment extends Fragment implements View.OnClickList
         et_img3= (ImageView) view.findViewById(R.id.et_img3);
         et_img4= (ImageView) view.findViewById(R.id.et_img4);
 
+        basic_layout_1= (LinearLayout) view.findViewById(R.id.basic_layout_1);
+        basic_layout_2= (LinearLayout) view.findViewById(R.id.basic_layout_2);
+        basic_layout_3= (LinearLayout) view.findViewById(R.id.basic_layout_3);
+        basic_layout_4= (LinearLayout) view.findViewById(R.id.basic_layout_4);
+        basic_layout_5= (LinearLayout) view.findViewById(R.id.basic_layout_5);
+        basic_layout_6= (LinearLayout) view.findViewById(R.id.basic_layout_6);
+        basic_layout_7= (LinearLayout) view.findViewById(R.id.basic_layout_7);
+
         add_img.setOnClickListener(this);
         sub_img.setOnClickListener(this);
         num_mul_img.setOnClickListener(this);
@@ -49,6 +64,51 @@ public class BasicOperationFragment extends Fragment implements View.OnClickList
         et_img2.setOnClickListener(this);
         et_img3.setOnClickListener(this);
         et_img4.setOnClickListener(this);
+
+        basic_layout_1.setOnLongClickListener(this);
+        basic_layout_2.setOnLongClickListener(this);
+        basic_layout_3.setOnLongClickListener(this);
+        basic_layout_4.setOnLongClickListener(this);
+        basic_layout_5.setOnLongClickListener(this);
+        basic_layout_6.setOnLongClickListener(this);
+        basic_layout_7.setOnLongClickListener(this);
+        weChatShare=new WeChatShare(getActivity());
+
+
+        if (!TextUtils.isEmpty(Preference.newInstance(getActivity()).getString(Settings.DAY_NIGHT_MODE))){
+            if (Preference.newInstance(getActivity()).getString(Settings.DAY_NIGHT_MODE).equals(Settings.NIGHT_MODE)){
+                add_img.setImageResource(R.mipmap.add);
+                sub_img.setImageResource(R.mipmap.night_sub);
+                num_mul_img.setImageResource(R.mipmap.night_mul);
+                trans_img.setImageResource(R.mipmap.night_trans);
+                mul_other_img.setImageResource(R.mipmap.night_mul_other);
+                trans_other_img.setImageResource(R.mipmap.night_trans_other);
+                e_img1.setImageResource(R.mipmap.night_e);
+                e_img2.setImageResource(R.mipmap.night_et3);
+                e_img3.setImageResource(R.mipmap.night_e3);
+
+                et_img1.setImageResource(R.mipmap.night_et1);
+                et_img2.setImageResource(R.mipmap.night_et2);
+                et_img3.setImageResource(R.mipmap.night_et3);
+                et_img4.setImageResource(R.mipmap.night_et4);
+            }else {
+                add_img.setImageResource(R.mipmap.add);
+                sub_img.setImageResource(R.mipmap.sub);
+                num_mul_img.setImageResource(R.mipmap.mul);
+                trans_img.setImageResource(R.mipmap.trans);
+                mul_other_img.setImageResource(R.mipmap.mul_other);
+                trans_other_img.setImageResource(R.mipmap.trans_other);
+                e_img1.setImageResource(R.mipmap.e);
+                e_img2.setImageResource(R.mipmap.et3);
+                e_img3.setImageResource(R.mipmap.e3);
+
+                et_img1.setImageResource(R.mipmap.et1);
+                et_img2.setImageResource(R.mipmap.et2);
+                et_img3.setImageResource(R.mipmap.et3);
+                et_img4.setImageResource(R.mipmap.et4);
+            }
+        }
+
         return view;
     }
 
@@ -94,11 +154,16 @@ public class BasicOperationFragment extends Fragment implements View.OnClickList
             case R.id.et_img4:
                 goToImageDetail(et_img4,R.mipmap.et4);
                 break;
-
         }
     }
 
-    private void goToImageDetail(View view,int res){
+    @Override
+    public boolean onLongClick(View v) {
+        weChatShare.initAlertDialog(v);
+        return false;
+    }
+
+    private void goToImageDetail(View view, int res){
         Intent intent = new Intent(getActivity(), SpaceImageDetailActivity.class);
         intent.putExtra("image", res);
         int[] location = new int[2];
@@ -110,4 +175,6 @@ public class BasicOperationFragment extends Fragment implements View.OnClickList
         startActivity(intent);
         getActivity().overridePendingTransition(0,0);
     }
+
+
 }
