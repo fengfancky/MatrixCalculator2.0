@@ -10,7 +10,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/setting_bg">
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -35,7 +36,7 @@
                 android:id="@+id/setting_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/setting_bg"
+
                 android:orientation="vertical"
                 android:paddingBottom="20dp">
                 <TextView
@@ -210,8 +211,10 @@
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:background="@drawable/ripple_bg"
-                    android:clickable="true">
+                    android:clickable="true"
+                    android:visibility="gone">
                     <TextView
+                        android:id="@+id/text_size"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -227,7 +230,8 @@
                     android:layout_height="1px"
                     android:background="@color/line_color"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp" />
+                    android:layout_marginRight="20dp"
+                    android:visibility="gone"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -240,6 +244,7 @@
                     android:textColor="@color/tip_color"/>
 
                 <TextView
+                    android:id="@+id/feedback"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="意见反馈"
@@ -270,7 +275,8 @@
                     android:paddingRight="20dp"
                     android:layout_gravity="center_vertical|left"
                     android:background="@drawable/ripple_bg"
-                    android:clickable="true"/>
+                    android:clickable="true"
+                    android:visibility="gone"/>
 
             </LinearLayout>
         </ScrollView>

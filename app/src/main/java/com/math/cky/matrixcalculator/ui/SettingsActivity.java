@@ -1,5 +1,7 @@
 package com.math.cky.matrixcalculator.ui;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +9,7 @@ import android.support.v7.app.AppCompatDelegate;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.FrameLayout;
@@ -26,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox checkbox1,checkbox2;
     private Switch formatSwitch,dayNightSwitch;
     private FrameLayout frame1,frame2;
-    private TextView formatText;
+    private TextView formatText,text_size,feedback;
 
 
     @Override
@@ -41,6 +44,8 @@ public class SettingsActivity extends AppCompatActivity {
         frame2= (FrameLayout) findViewById(R.id.format2);
         formatText= (TextView) findViewById(R.id.format_text);
         dayNightSwitch= (Switch) findViewById(R.id.day_night_switch);
+        text_size= (TextView) findViewById(R.id.text_size);
+        feedback= (TextView) findViewById(R.id.feedback);
 
         if (Preference.newInstance(this).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
             formatSwitch.setChecked(true);
@@ -141,6 +146,21 @@ public class SettingsActivity extends AppCompatActivity {
 
             }
         });
+
+//        text_size.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(SettingsActivity.this,SettingTextActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+        feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                composeEmail("","反馈意见");
+            }
+        });
     }
 
     private void initToolbar(){
@@ -149,6 +169,16 @@ public class SettingsActivity extends AppCompatActivity {
         toolbar.setTitle("设置");
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
+    }
+
+    public void composeEmail(String addresses, String subject) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO);
+        intent.setData(Uri.parse("mailto:1226005308@qq.com")); // only email apps should handle this
+        intent.putExtra(Intent.EXTRA_EMAIL, addresses);
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(Intent.createChooser(intent, "请选择邮箱"));
+        }
     }
 
 

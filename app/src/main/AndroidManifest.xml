@@ -43,6 +43,16 @@
 
         <activity android:name=".ui.SettingsActivity"
             android:theme="@style/AppTheme.Setting"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.SENDTO" />
+                <data android:scheme="mailto" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.SettingTextActivity"
+            android:theme="@style/AppTheme.Setting"
             android:screenOrientation="portrait"/>
 
         <activity android:name=".wxapi.WXEntryActivity"

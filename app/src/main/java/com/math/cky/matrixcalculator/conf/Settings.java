@@ -19,6 +19,9 @@ public class Settings {
     public static final String DAY_MODE="day_mode";
     public static final String NIGHT_MODE="night_mode";
 
+    public static final String TEXTSIZE="text_size";
+    public static final int SIZE=1;
+
 
 
 }
