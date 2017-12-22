@@ -265,9 +265,10 @@
                     android:layout_marginRight="20dp" />
 
                 <TextView
+                    android:id="@+id/about"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="去评价"
+                    android:text="关于"
                     android:textSize="16sp"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
@@ -275,8 +276,14 @@
                     android:paddingRight="20dp"
                     android:layout_gravity="center_vertical|left"
                     android:background="@drawable/ripple_bg"
-                    android:clickable="true"
-                    android:visibility="gone"/>
+                    android:clickable="true" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="@color/line_color"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp" />
 
             </LinearLayout>
         </ScrollView>

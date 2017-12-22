@@ -29,7 +29,7 @@ public class SettingsActivity extends AppCompatActivity {
     private CheckBox checkbox1,checkbox2;
     private Switch formatSwitch,dayNightSwitch;
     private FrameLayout frame1,frame2;
-    private TextView formatText,text_size,feedback;
+    private TextView formatText,text_size,feedback,about;
 
 
     @Override
@@ -46,13 +46,18 @@ public class SettingsActivity extends AppCompatActivity {
         dayNightSwitch= (Switch) findViewById(R.id.day_night_switch);
         text_size= (TextView) findViewById(R.id.text_size);
         feedback= (TextView) findViewById(R.id.feedback);
+        about= (TextView) findViewById(R.id.about);
 
         if (Preference.newInstance(this).getString(Settings.FORMAT_SWITCH).equals(Settings.CLOSE)){
             formatSwitch.setChecked(true);
+            checkbox1.setEnabled(false);
+            checkbox2.setEnabled(false);
             frame1.setForeground(getResources().getDrawable(R.drawable.frame_fore));
             frame2.setForeground(getResources().getDrawable(R.drawable.frame_fore));
             formatText.setText("打开格式");
         }else {
+            checkbox1.setEnabled(true);
+            checkbox2.setEnabled(true);
             formatSwitch.setChecked(false);
             frame1.setForeground(null);
             frame2.setForeground(null);
@@ -141,24 +146,23 @@ public class SettingsActivity extends AppCompatActivity {
                     getDelegate().setLocalNightMode(AppCompatDelegate.MODE_NIGHT_NO);
                     Preference.newInstance(SettingsActivity.this).put(Settings.DAY_NIGHT_MODE,Settings.DAY_MODE);
                 }
-
 //               recreate();
-
             }
         });
 
-//        text_size.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent=new Intent(SettingsActivity.this,SettingTextActivity.class);
-//                startActivity(intent);
-//            }
-//        });
 
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 composeEmail("","反馈意见");
+            }
+        });
+
+        about.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(SettingsActivity.this,AboutActivity.class);
+                startActivity(intent);
             }
         });
     }
